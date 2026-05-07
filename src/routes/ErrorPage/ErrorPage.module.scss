@@ -1,0 +1,18 @@
+@use '../../styles/mixins';
+
+.error-page {
+	background-color: white;
+
+	&__body {
+		@include mixins.page-body-base;
+	}
+
+	&__title {
+		font-size: 24px;
+	}
+  
+	&__image {
+		width: 50%;
+		max-width: 300px;
+	}
+}

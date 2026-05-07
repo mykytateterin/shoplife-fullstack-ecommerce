@@ -1,0 +1,36 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 50%;
+	max-width: 200px;
+	row-gap: 15px;
+	margin-inline: auto;
+	padding-block: 100px;
+
+	&__login-title {
+		align-self: flex-start;
+		font-size: 24px;
+	}
+
+	&__password-title {
+		align-self: flex-start;
+		font-size: 24px;
+	}
+
+	&__input {
+		padding: 5px;
+		width: 100%;
+		font-size: 16px;
+	}
+
+	&__change-title {
+		font-size: 16px;
+	}
+  
+	&__change-button {
+		text-align: center;
+		color: red;
+		font-size: 16px;
+	}
+}

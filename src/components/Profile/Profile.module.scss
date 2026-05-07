@@ -1,0 +1,9 @@
+@use '../../styles/mixins';
+
+.profile {
+	@include mixins.page-body-base;
+
+	&__login {
+		font-size: 24px;
+	}
+}

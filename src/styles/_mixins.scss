@@ -1,0 +1,9 @@
+@mixin page-body-base {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90%;
+	margin-inline: auto;
+	row-gap: 15px;
+	padding-block: 50px;
+}
