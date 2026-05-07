@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
 
 import { useUserStore } from '../../stores';
@@ -9,7 +9,7 @@ import styles from './AuthForm.module.scss';
 export const AuthForm = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [authFormData, setAuthFormData] = useState({ login: '', password: '' });
-  
+
   const generateToken = useUserStore((state) => state.generateToken);
   const navigate = useNavigate();
 

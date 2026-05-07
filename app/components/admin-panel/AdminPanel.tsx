@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import styles from './AdminPanel.module.scss';
 
-import { CategoriesPanel } from '../';
+import { CategoriesPanel } from '..';
 // import ProductsPanel from './ProductsPanel';
 // import PromotionsPanel from './PromotionsPanel';
 // import UsersPanel from './UsersPanel';
@@ -19,11 +19,11 @@ export const AdminPanel = () => {
       case 'Categories':
         return <CategoriesPanel />;
       case 'Products':
-        // return <ProductsPanel />;
+      // return <ProductsPanel />;
       case 'Promotions':
-        // return <PromotionsPanel />;
+      // return <PromotionsPanel />;
       case 'Users':
-        // return <UsersPanel />;
+      // return <UsersPanel />;
       default:
         break;
     }

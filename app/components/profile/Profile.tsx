@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 
 import styles from './Profile.module.scss';
 import { useState } from 'react';
-import { AdminPanel } from '../AdminPanel';
+import { AdminPanel } from '../admin-panel/AdminPanel';
 
 export const Profile = () => {
   const [isAdminPanel, setIsAdminPanel] = useState(false);
