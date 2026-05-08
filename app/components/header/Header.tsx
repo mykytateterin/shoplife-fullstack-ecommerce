@@ -8,10 +8,11 @@ import closeHamburgerIcon from '../../assets/images/icons/close-hamburger-menu-i
 import accountIcon from '../../assets/images/icons/account-icon.svg';
 
 import styles from './Header.module.scss';
+import { getCategoriesStorage } from '~/lib/storage/catalog/categoryStorage';
 
 export const Header = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
-  const navCategories = JSON.parse(localStorage.getItem('categories'));
+  const navCategories = getCategoriesStorage();
 
   const handleHamburger = () => {
     setIsHamburgerOpen(!isHamburgerOpen);

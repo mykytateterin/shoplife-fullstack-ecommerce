@@ -3,10 +3,11 @@ import { useState } from 'react';
 import deleteIcon from '../../assets/images/icons/delete-icon.svg';
 
 import styles from './CategoriesPanel.module.scss';
+import { getCategoriesStorage, setCategoriesStorage } from '~/lib/storage/catalog/categoryStorage';
 
 export const CategoriesPanel = () => {
   const [categories, setCategories] = useState(
-    JSON.parse(localStorage.getItem('categories')),
+    getCategoriesStorage(),
   );
   const [isAddNewCategory, setIsAddNewCategory] = useState(false);
   const [newCategory, setNewCategory] = useState({ name: '', url: '' });
@@ -21,9 +22,9 @@ export const CategoriesPanel = () => {
     categories[newCategory.name] = {
       url: '/' + newCategory.url,
     };
-    localStorage.setItem('categories', JSON.stringify(categories));
+    setCategoriesStorage(categories);
 
-    setCategories(JSON.parse(localStorage.getItem('categories')));
+    setCategories(getCategoriesStorage());
     setNewCategory({ name: '', url: '' });
   };
 
@@ -42,8 +43,8 @@ export const CategoriesPanel = () => {
       .filter((value) => !!value);
 
     Object.assign(keepedCategories, ...keepedCategoriesArray);
-    localStorage.setItem('categories', JSON.stringify(keepedCategories));
-    setCategories(JSON.parse(localStorage.getItem('categories')));
+    setCategoriesStorage(keepedCategories);
+    setCategories(getCategoriesStorage());
   };
 
   return (

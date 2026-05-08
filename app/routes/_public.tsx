@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
 import { useUserStore } from '../stores';
+import { getCategoriesStorage, setCategoriesStorage } from '~/lib/storage/catalog/categoryStorage';
 
 const loginCheck = useUserStore((state) => state.loginCheck);
 const generateToken = useUserStore((state) => state.generateToken);
@@ -42,8 +43,8 @@ useEffect(() => {
   localStorage.getItem('users') ||
     localStorage.setItem('users', JSON.stringify(dummyUsers));
 
-  localStorage.getItem('categories') ||
-    localStorage.setItem('categories', JSON.stringify(dummyCategories));
+  Object.keys(getCategoriesStorage()).length ||
+    setCategoriesStorage(dummyCategories);
 }, []);
 
 
