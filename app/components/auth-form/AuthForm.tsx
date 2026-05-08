@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { useUserStore } from '../../stores';
 
 import styles from './AuthForm.module.scss';
+import { getUsersStorage, setUsersStorage } from '~/lib/storage/users/usersStorage';
 
 export const AuthForm = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -15,7 +16,7 @@ export const AuthForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const parsedUsers = JSON.parse(localStorage.getItem('users')) || {};
+    const parsedUsers = getUsersStorage();
 
     if (isLoginForm) {
       const parsedAccount = parsedUsers?.[authFormData.login];
@@ -36,7 +37,7 @@ export const AuthForm = () => {
 
         handleCookies(authFormData.login, userData[authFormData.login].token);
         Object.assign(parsedUsers, userData);
-        localStorage.setItem('users', JSON.stringify(parsedUsers));
+        setUsersStorage(parsedUsers);
       }
     }
   };

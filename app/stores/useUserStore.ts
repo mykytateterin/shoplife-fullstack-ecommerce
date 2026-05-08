@@ -1,12 +1,13 @@
 import { create } from 'zustand';
 import Cookies from 'js-cookie';
+import { getUsersStorage } from '~/lib/storage/users/usersStorage';
 
 export const useUserStore = create((set) => ({
   isLogged: null,
   loginCheck: () => {
     const login = Cookies.get('login');
     const token = Cookies.get('token');
-    const users = JSON.parse(localStorage.getItem('users'));
+    const users = getUsersStorage();
 
     if (login && token) {
       const userToken = users?.[login]?.token;
