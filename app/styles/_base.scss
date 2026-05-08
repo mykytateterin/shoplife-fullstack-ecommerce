@@ -1,18 +1,31 @@
-* {
+*,
+*::before,
+*::after {
 	margin: 0;
 	padding: 0;
-	list-style: none;
-	font-size: 0;
+	box-sizing: border-box;
 }
-button {
-	border-radius: 5px;
-	background-color: white;
-	cursor: pointer;
-	padding: 10px;
-	width: 175px;
-	min-width: fit-content;
+
+html {
 	font-size: 16px;
-	&:hover {
-		background-color: lightcyan;
-	}
+	line-height: 1.5;
+}
+
+body {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: #000;
+	background-color: #fff;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: 0;
+	cursor: pointer;
 }
