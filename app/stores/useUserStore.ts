@@ -1,12 +1,11 @@
 import { create } from 'zustand';
-import Cookies from 'js-cookie';
+import { getAuthCookies } from '~/lib/storage/cookies/authCookies';
 import { getUsersStorage } from '~/lib/storage/users/usersStorage';
 
 export const useUserStore = create((set) => ({
   isLogged: null,
   loginCheck: () => {
-    const login = Cookies.get('login');
-    const token = Cookies.get('token');
+    const { login, token } = getAuthCookies();
     const users = getUsersStorage();
 
     if (login && token) {

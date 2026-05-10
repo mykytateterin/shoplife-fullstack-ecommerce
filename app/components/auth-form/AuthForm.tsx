@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import Cookies from 'js-cookie';
 
 import { useUserStore } from '../../stores';
 
 import styles from './AuthForm.module.scss';
 import { getUsersStorage, setUsersStorage } from '~/lib/storage/users/usersStorage';
+import { setAuthCookies } from '~/lib/storage/cookies/authCookies';
 
 export const AuthForm = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -43,8 +43,7 @@ export const AuthForm = () => {
   };
 
   const handleCookies = (login, token) => {
-    Cookies.set('login', login, { expires: 30 });
-    Cookies.set('token', token, { expires: 30 });
+    setAuthCookies(login, token);
     navigate('/account');
   };
 

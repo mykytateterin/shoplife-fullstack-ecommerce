@@ -1,12 +1,11 @@
-import Cookies from 'js-cookie';
-
 import styles from './Profile.module.scss';
 import { useState } from 'react';
 import { AdminPanel } from '../admin-panel/AdminPanel';
+import { getAuthCookies } from '~/lib/storage/cookies/authCookies';
 
 export const Profile = () => {
   const [isAdminPanel, setIsAdminPanel] = useState(false);
-  const login = Cookies.get('login');
+  const { login } = getAuthCookies();
 
   const handleClick = () => {
     setIsAdminPanel(!isAdminPanel);
