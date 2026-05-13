@@ -9,47 +9,46 @@ import { useUserStore } from '../stores';
 import { getCategoriesStorage, setCategoriesStorage } from '~/lib/storage/catalog/categoryStorage';
 import { getUsersStorage, setUsersStorage } from '~/lib/storage/users/usersStorage';
 
-const loginCheck = useUserStore((state) => state.loginCheck);
-const generateToken = useUserStore((state) => state.generateToken);
-const location = useLocation();
-
-useEffect(() => {
-  loginCheck();
-}, [location]);
-
-useEffect(() => {
-  const dummyUsers = {
-    dummyAdmin: {
-      password: 'admin123',
-      token: generateToken(),
-      isAdmin: true,
-    },
-  };
-
-  const dummyCategories = {
-    men: {
-      url: '/men',
-    },
-    women: {
-      url: '/women',
-    },
-    kids: {
-      url: '/kids',
-    },
-    sale: {
-      url: '/sale',
-    },
-  };
-
-  Object.keys(getUsersStorage()).length ||
-    setUsersStorage(dummyUsers);
-
-  Object.keys(getCategoriesStorage()).length ||
-    setCategoriesStorage(dummyCategories);
-}, []);
-
-
 export default function PublicLayout() {
+  const loginCheck = useUserStore((state) => state.loginCheck);
+  const generateToken = useUserStore((state) => state.generateToken);
+  const location = useLocation();
+
+  useEffect(() => {
+    loginCheck();
+  }, [location]);
+
+  useEffect(() => {
+    const dummyUsers = {
+      dummyAdmin: {
+        password: 'admin123',
+        token: generateToken(),
+        isAdmin: true,
+      },
+    };
+
+    const dummyCategories = {
+      men: {
+        url: '/men',
+      },
+      women: {
+        url: '/women',
+      },
+      kids: {
+        url: '/kids',
+      },
+      sale: {
+        url: '/sale',
+      },
+    };
+
+    Object.keys(getUsersStorage()).length ||
+      setUsersStorage(dummyUsers);
+
+    Object.keys(getCategoriesStorage()).length ||
+      setCategoriesStorage(dummyCategories);
+  }, []);
+
   return (
     <>
       <Header />
