@@ -1,8 +1,9 @@
 import { create } from 'zustand';
 import { getAuthCookies } from '~/lib/storage/cookies/authCookies';
 import { getUsersStorage } from '~/lib/storage/users/usersStorage';
+import type { UserState } from '~/types/store';
 
-export const useUserStore = create((set) => ({
+export const useUserStore = create<UserState>((set) => ({
   isLogged: null,
   loginCheck: () => {
     const { login, token } = getAuthCookies();
@@ -11,10 +12,10 @@ export const useUserStore = create((set) => ({
     if (login && token) {
       const userToken = users?.[login]?.token;
 
-      return set({ isLogged: userToken === token });
+      set({ isLogged: userToken === token });
     }
 
-    return set({ isLogged: false });
+    set({ isLogged: false });
   },
   generateToken: () => {
     const chars =
