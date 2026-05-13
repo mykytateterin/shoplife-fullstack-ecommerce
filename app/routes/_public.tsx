@@ -16,7 +16,7 @@ export default function PublicLayout() {
 
   useEffect(() => {
     loginCheck();
-  }, [location]);
+  }, [loginCheck, location]);
 
   useEffect(() => {
     const dummyUsers = {
@@ -42,12 +42,14 @@ export default function PublicLayout() {
       },
     };
 
-    Object.keys(getUsersStorage()).length ||
+    if (Object.keys(getUsersStorage()).length === 0) {
       setUsersStorage(dummyUsers);
+    }
 
-    Object.keys(getCategoriesStorage()).length ||
+    if (Object.keys(getCategoriesStorage()).length === 0) {
       setCategoriesStorage(dummyCategories);
-  }, []);
+    }
+  }, [generateToken]);
 
   return (
     <>

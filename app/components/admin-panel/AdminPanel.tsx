@@ -19,11 +19,14 @@ export const AdminPanel = () => {
       case 'Categories':
         return <CategoriesPanel />;
       case 'Products':
-      // return <ProductsPanel />;
+        // return <ProductsPanel />;
+        break;
       case 'Promotions':
-      // return <PromotionsPanel />;
+        // return <PromotionsPanel />;
+        break;
       case 'Users':
-      // return <UsersPanel />;
+        // return <UsersPanel />;
+        break;
       default:
         break;
     }

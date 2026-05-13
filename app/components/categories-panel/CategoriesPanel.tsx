@@ -19,12 +19,15 @@ export const CategoriesPanel = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    categories[newCategory.name] = {
-      url: '/' + newCategory.url,
+    const updatedCategories = {
+      [newCategory.name]: {
+        url: '/' + newCategory.url,
+      },
+      ...categories,
     };
-    setCategoriesStorage(categories);
 
-    setCategories(getCategoriesStorage());
+    setCategories(updatedCategories);
+    setCategoriesStorage(updatedCategories);
     setNewCategory({ name: '', url: '' });
   };
 
