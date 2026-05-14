@@ -1,13 +1,23 @@
-export type User = {
-  password: string;
-  token: string;
-  isAdmin: boolean;
-};
+import z from 'zod';
 
-export type Users = Record<string, User>;
+export const UserSchema = z.object({
+  password: z.string(),
+  token: z.string(),
+  isAdmin: z.boolean(),
+});
 
-export type Category = {
-  url: string;
-};
+export type User = z.infer<typeof UserSchema>;
 
-export type Categories = Record<string, Category>;
+export const UsersSchema = z.record(z.string(), UserSchema);
+
+export type Users = z.infer<typeof UsersSchema>;
+
+export const CategorySchema = z.object({
+  url: z.string()
+});
+
+export type Category = z.infer<typeof CategorySchema>;
+
+export const CategoriesSchema = z.record(z.string(), CategorySchema);
+
+export type Categories = z.infer<typeof CategoriesSchema>;
