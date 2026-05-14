@@ -9,7 +9,7 @@ export const ErrorPage = () => {
         <h1 className={styles['error-page__title']}>Page not found...</h1>
         <img
           src={errorIcon}
-          alt='Error 404 icon (page not found)'
+          alt="Error 404 icon (page not found)"
           className={styles['error-page__image']}
         />
       </div>

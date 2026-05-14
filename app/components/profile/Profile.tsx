@@ -16,7 +16,7 @@ export const Profile = () => {
       <h2 className={styles['profile__login']}>{login}</h2>
       {isAdminPanel && <AdminPanel />}
       <button
-        type='button'
+        type="button"
         onClick={handleClick}
         className={styles['profile__button']}
       >

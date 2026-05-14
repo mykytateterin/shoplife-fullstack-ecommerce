@@ -34,28 +34,16 @@ export const AdminPanel = () => {
 
   return (
     <div className={styles['admin-panel']}>
-      <button
-        type='button'
-        onClick={handleClick}
-      >
+      <button type="button" onClick={handleClick}>
         Categories
       </button>
-      <button
-        type='button'
-        onClick={handleClick}
-      >
+      <button type="button" onClick={handleClick}>
         Products
       </button>
-      <button
-        type='button'
-        onClick={handleClick}
-      >
+      <button type="button" onClick={handleClick}>
         Promotions
       </button>
-      <button
-        type='button'
-        onClick={handleClick}
-      >
+      <button type="button" onClick={handleClick}>
         Users
       </button>
       {panelSwitch()}

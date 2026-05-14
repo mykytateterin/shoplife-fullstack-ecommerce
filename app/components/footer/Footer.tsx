@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className={styles['footer__body']}>
         <img
           src={logo}
-          alt='ShopLife logo'
+          alt="ShopLife logo"
           className={styles['footer__logo']}
         />
         <p className={styles['footer__info']}>Made with ❤️ by Mykyta Teterin</p>

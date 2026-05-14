@@ -1,13 +1,19 @@
-import { Outlet } from "react-router";
-import { Header } from "../components/header/Header";
-import { Footer } from "../components/footer/Footer";
+import { Outlet } from 'react-router';
+import { Header } from '../components/header/Header';
+import { Footer } from '../components/footer/Footer';
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
 import { useUserStore } from '../stores';
-import { getCategoriesStorage, setCategoriesStorage } from '~/lib/storage/catalog/categoryStorage';
-import { getUsersStorage, setUsersStorage } from '~/lib/storage/users/usersStorage';
+import {
+  getCategoriesStorage,
+  setCategoriesStorage,
+} from '~/lib/storage/catalog/categoryStorage';
+import {
+  getUsersStorage,
+  setUsersStorage,
+} from '~/lib/storage/users/usersStorage';
 
 export default function PublicLayout() {
   const loginCheck = useUserStore((state) => state.loginCheck);

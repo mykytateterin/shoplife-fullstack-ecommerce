@@ -21,8 +21,8 @@ export const Header = () => {
   return (
     <header className={styles['header']}>
       <div className={styles['header__body']}>
-        <Link to='/' className={styles['header__logo']}>
-          <img src={logo} alt='ShopLife logo' />
+        <Link to="/" className={styles['header__logo']}>
+          <img src={logo} alt="ShopLife logo" />
         </Link>
         <motion.div
           animate={
@@ -35,22 +35,30 @@ export const Header = () => {
         >
           <nav className={styles['header__navigation-body']}>
             {Object.keys(navCategories || {}).map((key) => {
-              return <Link key={navCategories[key].url} to={navCategories[key].url} className={styles['header__navigation-item']}>{key.toUpperCase()}</Link>
+              return (
+                <Link
+                  key={navCategories[key].url}
+                  to={navCategories[key].url}
+                  className={styles['header__navigation-item']}
+                >
+                  {key.toUpperCase()}
+                </Link>
+              );
             })}
           </nav>
           <img
             src={closeHamburgerIcon}
-            alt='Button to close the navigation slider'
+            alt="Button to close the navigation slider"
             onClick={handleHamburger}
             className={styles['header__close-hamburger']}
           />
         </motion.div>
-        <Link to='/account' className={styles['header__account']}>
-          <img src={accountIcon} alt='Button to access your account' />
+        <Link to="/account" className={styles['header__account']}>
+          <img src={accountIcon} alt="Button to access your account" />
         </Link>
         <img
           src={openHamburgerIcon}
-          alt='Button to open the navigation slider'
+          alt="Button to open the navigation slider"
           onClick={handleHamburger}
           className={styles['header__open-hamburger']}
         />

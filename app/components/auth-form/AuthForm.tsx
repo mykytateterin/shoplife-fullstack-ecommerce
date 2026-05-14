@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router';
 import { useUserStore } from '../../stores';
 
 import styles from './AuthForm.module.scss';
-import { getUsersStorage, setUsersStorage } from '~/lib/storage/users/usersStorage';
+import {
+  getUsersStorage,
+  setUsersStorage,
+} from '~/lib/storage/users/usersStorage';
 import { setAuthCookies } from '~/lib/storage/cookies/authCookies';
 
 export const AuthForm = () => {
@@ -59,33 +62,24 @@ export const AuthForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={styles['form']}
-    >
-      <label
-        htmlFor='login'
-        className={styles['form__login-title']}
-      >
+    <form onSubmit={handleSubmit} className={styles['form']}>
+      <label htmlFor="login" className={styles['form__login-title']}>
         Login
       </label>
       <input
-        type='text'
-        id='login'
+        type="text"
+        id="login"
         value={authFormData.login}
         onChange={handleChange}
         className={styles['form__input']}
         required
       />
-      <label
-        htmlFor='password'
-        className={styles['form__password-title']}
-      >
+      <label htmlFor="password" className={styles['form__password-title']}>
         Password
       </label>
       <input
-        type='password'
-        id='password'
+        type="password"
+        id="password"
         value={authFormData.password}
         onChange={handleChange}
         className={styles['form__input']}
@@ -94,18 +88,12 @@ export const AuthForm = () => {
       <p className={styles['form__change-title']}>
         {isLoginForm ? 'New to ShopLife?' : 'Already a member?'}
       </p>
-      <p
-        onClick={handleClick}
-        className={styles['form__change-button']}
-      >
+      <p onClick={handleClick} className={styles['form__change-button']}>
         {isLoginForm
           ? 'Click here to create a new account!'
           : 'Click here to sign in!'}
       </p>
-      <button
-        type='submit'
-        className={styles['form__button']}
-      >
+      <button type="submit" className={styles['form__button']}>
         {isLoginForm ? 'Enter' : 'Sign Up'}
       </button>
     </form>

@@ -1,9 +1,9 @@
 @use '../../styles/mixins';
 
 .home-page {
-	background-color: white;
+  background-color: white;
 
-	&__body {
-		@include mixins.page-body-base;
-	}
+  &__body {
+    @include mixins.page-body-base;
+  }
 }
