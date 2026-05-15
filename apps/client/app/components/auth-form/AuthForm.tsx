@@ -7,8 +7,8 @@ import styles from './AuthForm.module.scss';
 import {
   getUsersStorage,
   setUsersStorage,
-} from '~/lib/storage/users/usersStorage';
-import { setAuthCookies } from '~/lib/storage/cookies/authCookies';
+} from '../../lib/storage/users/usersStorage';
+import { setAuthCookies } from '../../lib/storage/cookies/authCookies';
 
 export const AuthForm = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);

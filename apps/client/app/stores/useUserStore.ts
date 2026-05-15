@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { getAuthCookies } from '~/lib/storage/cookies/authCookies';
-import { getUsersStorage } from '~/lib/storage/users/usersStorage';
-import type { UserState } from '~/types/store';
+import { getAuthCookies } from '../lib/storage/cookies/authCookies';
+import { getUsersStorage } from '../lib/storage/users/usersStorage';
+import type { UserState } from '../types/store';
 
 export const useUserStore = create<UserState>((set) => ({
   isLogged: null,

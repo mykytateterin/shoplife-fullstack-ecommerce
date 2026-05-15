@@ -1,4 +1,4 @@
-import { UsersSchema, type Users } from '~/types/domain';
+import { UsersSchema, type Users } from '../../../types/domain';
 
 export const setUsersStorage = (users: Users): void => {
   localStorage.setItem('users', JSON.stringify(users));

@@ -1,4 +1,4 @@
-import { CategoriesSchema, type Categories } from '~/types/domain';
+import { CategoriesSchema, type Categories } from '../../../types/domain';
 
 export const setCategoriesStorage = (categories: Categories): void => {
   localStorage.setItem('categories', JSON.stringify(categories));

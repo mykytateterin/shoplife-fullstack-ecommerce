@@ -9,11 +9,11 @@ import { useUserStore } from '../stores';
 import {
   getCategoriesStorage,
   setCategoriesStorage,
-} from '~/lib/storage/catalog/categoryStorage';
+} from '../lib/storage/catalog/categoryStorage';
 import {
   getUsersStorage,
   setUsersStorage,
-} from '~/lib/storage/users/usersStorage';
+} from '../lib/storage/users/usersStorage';
 
 export default function PublicLayout() {
   const loginCheck = useUserStore((state) => state.loginCheck);

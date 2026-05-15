@@ -6,7 +6,7 @@ import styles from './CategoriesPanel.module.scss';
 import {
   getCategoriesStorage,
   setCategoriesStorage,
-} from '~/lib/storage/catalog/categoryStorage';
+} from '../../lib/storage/catalog/categoryStorage';
 
 export const CategoriesPanel = () => {
   const [categories, setCategories] = useState(getCategoriesStorage());

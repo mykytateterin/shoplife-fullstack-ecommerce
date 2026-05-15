@@ -1,16 +1,14 @@
-import js from '@eslint/js';
+import { baseConfig } from '@shoplife/eslint-config';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist', 'build', '.react-router'] },
+  ...baseConfig,
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      ecmaVersion: 2020,
       globals: globals.browser,
     },
     plugins: {
@@ -24,6 +22,5 @@ export default tseslint.config(
         { allowConstantExport: true, allowExportNames: ['meta', 'links'] },
       ],
     }
-  },
-  eslintConfigPrettier
+  }
 );
