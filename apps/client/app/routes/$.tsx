@@ -1,5 +1,7 @@
 import { ErrorPage } from '../pages/not-found/NotFoundPage';
 
-export const ErrorPage = () => {
+const ErrorRoute = () => {
   return <ErrorPage />;
-};
+}
+
+export default ErrorRoute;

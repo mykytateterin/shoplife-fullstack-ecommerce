@@ -1,5 +1,7 @@
 import { AccountPage } from '../pages/account/AccountPage';
 
-export const AccountPage = () => {
+const AccountRoute = ()   => {
   return <AccountPage />;
 };
+
+export default AccountRoute;
