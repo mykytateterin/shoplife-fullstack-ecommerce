@@ -15,6 +15,7 @@
     "@react-router/serve": "7.15.0",
     "@shoplife/shared": "workspace:*",
     "@types/js-cookie": "^3.0.6",
+    "framer-motion": "^12.38.0",
     "isbot": "^5.1.36",
     "js-cookie": "^3.0.5",
     "normalize.css": "^8.0.1",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@react-router/dev": "7.15.0",
+    "@react-router/fs-routes": "^7.15.1",
     "@shoplife/eslint-config": "workspace:*",
     "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^22",

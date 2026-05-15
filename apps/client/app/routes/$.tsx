@@ -1,7 +1,7 @@
-import { ErrorPage } from '../pages/not-found/NotFoundPage';
+import { NotFoundPage } from '../pages/not-found/NotFoundPage';
 
-const ErrorRoute = () => {
-  return <ErrorPage />;
+const NotFoundRoute = () => {
+  return <NotFoundPage />;
 }
 
-export default ErrorRoute;
+export default NotFoundRoute;

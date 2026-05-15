@@ -1,8 +1,8 @@
 import errorIcon from '../../assets/images/icons/error-page-icon.svg';
 
-import styles from './ErrorPage.module.scss';
+import styles from './NotFoundPage.module.scss';
 
-export const ErrorPage = () => {
+export const NotFoundPage = () => {
   return (
     <main className={styles['error-page']}>
       <div className={styles['error-page__body']}>
