@@ -3,6 +3,13 @@
   "private": true,
   "scripts": {
     "dev:client": "pnpm --filter @shoplife/client dev",
-    "dev:server": "pnpm --filter @shoplife/server dev"
+    "dev:server": "pnpm --filter @shoplife/server dev",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,scss}\""
+  },
+  "devDependencies": {
+    "@types/node": "^25.8.0",
+    "eslint": "^10.4.0",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3"
   }
 }

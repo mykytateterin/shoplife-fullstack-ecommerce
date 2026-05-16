@@ -1,6 +1,6 @@
 {
   "name": "@shoplife/server",
-  "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
@@ -20,7 +20,6 @@
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
-    "tsx": "^4.22.0",
-    "typescript": "^5.9.3"
+    "tsx": "^4.22.0"
   }
 }
