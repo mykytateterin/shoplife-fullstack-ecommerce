@@ -10,5 +10,4 @@ export const getCategoriesStorage = (): Categories => {
   return CategoriesSchema.parse(categoriesStorageData);
 };
 
-export const deleteCategoriesStorage = (): void =>
-  localStorage.removeItem('categories');
+export const deleteCategoriesStorage = (): void => localStorage.removeItem('categories');

@@ -25,11 +25,7 @@ export const Header = () => {
           <img src={logo} alt="ShopLife logo" />
         </Link>
         <motion.div
-          animate={
-            isHamburgerOpen
-              ? { x: '-100%', display: 'flex' }
-              : { x: 0, display: 'none' }
-          }
+          animate={isHamburgerOpen ? { x: '-100%', display: 'flex' } : { x: 0, display: 'none' }}
           transition={{ type: 'tween' }}
           className={styles['header__navigation']}
         >

@@ -1,6 +1,6 @@
 import { AccountPage } from '../pages/account/AccountPage';
 
-const AccountRoute = ()   => {
+const AccountRoute = () => {
   return <AccountPage />;
 };
 

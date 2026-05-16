@@ -18,8 +18,7 @@ export const useUserStore = create<UserState>((set) => ({
     set({ isLogged: false });
   },
   generateToken: () => {
-    const chars =
-      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let token = '';
 
     for (let i = 0; i < 16; i++) {

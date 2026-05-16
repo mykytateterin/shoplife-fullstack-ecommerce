@@ -33,10 +33,8 @@ export const CategoriesPanel = () => {
   };
 
   const handleChange = (e) => {
-    if (e.target.id === 'name')
-      setNewCategory({ ...newCategory, name: e.target.value });
-    else if (e.target.id === 'url')
-      setNewCategory({ ...newCategory, url: e.target.value });
+    if (e.target.id === 'name') setNewCategory({ ...newCategory, name: e.target.value });
+    else if (e.target.id === 'url') setNewCategory({ ...newCategory, url: e.target.value });
   };
 
   const handleDelete = (index) => {
@@ -65,17 +63,11 @@ export const CategoriesPanel = () => {
           </li>
         ))}
       </ul>
-      <p
-        onClick={handleAddNewCategory}
-        className={styles['categories-panel__add-new']}
-      >
+      <p onClick={handleAddNewCategory} className={styles['categories-panel__add-new']}>
         Add a new category
       </p>
       {isAddNewCategory && (
-        <form
-          onSubmit={handleSubmit}
-          className={styles['categories-panel__add-new-form']}
-        >
+        <form onSubmit={handleSubmit} className={styles['categories-panel__add-new-form']}>
           <input
             type="text"
             id="name"
@@ -94,10 +86,7 @@ export const CategoriesPanel = () => {
             className={styles['categories-panel__add-new-input']}
             required
           />
-          <button
-            type="submit"
-            className={styles['categories-panel__add-new-submit']}
-          >
+          <button type="submit" className={styles['categories-panel__add-new-submit']}>
             Add
           </button>
         </form>

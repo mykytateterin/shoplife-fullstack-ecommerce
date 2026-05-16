@@ -4,10 +4,7 @@ import { useNavigate } from 'react-router';
 import { useUserStore } from '../../stores';
 
 import styles from './AuthForm.module.scss';
-import {
-  getUsersStorage,
-  setUsersStorage,
-} from '../../lib/storage/users/usersStorage';
+import { getUsersStorage, setUsersStorage } from '../../lib/storage/users/usersStorage';
 import { setAuthCookies } from '../../lib/storage/cookies/authCookies';
 
 export const AuthForm = () => {
@@ -51,8 +48,7 @@ export const AuthForm = () => {
   };
 
   const handleChange = (e) => {
-    if (e.target.id === 'login')
-      setAuthFormData({ ...authFormData, login: e.target.value });
+    if (e.target.id === 'login') setAuthFormData({ ...authFormData, login: e.target.value });
     else if (e.target.id === 'password')
       setAuthFormData({ ...authFormData, password: e.target.value });
   };
@@ -89,9 +85,7 @@ export const AuthForm = () => {
         {isLoginForm ? 'New to ShopLife?' : 'Already a member?'}
       </p>
       <p onClick={handleClick} className={styles['form__change-button']}>
-        {isLoginForm
-          ? 'Click here to create a new account!'
-          : 'Click here to sign in!'}
+        {isLoginForm ? 'Click here to create a new account!' : 'Click here to sign in!'}
       </p>
       <button type="submit" className={styles['form__button']}>
         {isLoginForm ? 'Enter' : 'Sign Up'}

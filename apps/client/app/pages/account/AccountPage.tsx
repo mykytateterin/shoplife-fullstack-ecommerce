@@ -7,9 +7,5 @@ import styles from './AccountPage.module.scss';
 export const AccountPage = () => {
   const isLogged = useUserStore((state) => state.isLogged);
 
-  return (
-    <main className={styles['account-page']}>
-      {isLogged ? <Profile /> : <AuthForm />}
-    </main>
-  );
+  return <main className={styles['account-page']}>{isLogged ? <Profile /> : <AuthForm />}</main>;
 };

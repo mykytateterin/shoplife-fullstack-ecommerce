@@ -13,7 +13,7 @@ export const UsersSchema = z.record(z.string(), UserSchema);
 export type Users = z.infer<typeof UsersSchema>;
 
 export const CategorySchema = z.object({
-  url: z.string()
+  url: z.string(),
 });
 
 export type Category = z.infer<typeof CategorySchema>;

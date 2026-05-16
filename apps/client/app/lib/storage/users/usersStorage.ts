@@ -8,6 +8,6 @@ export const getUsersStorage = (): Users => {
   const usersStorageData = JSON.parse(localStorage.getItem('users') || '{}');
 
   return UsersSchema.parse(usersStorageData);
-}
+};
 
 export const deleteUsersStorage = (): void => localStorage.removeItem('users');

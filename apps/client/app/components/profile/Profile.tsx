@@ -15,11 +15,7 @@ export const Profile = () => {
     <div className={styles['profile']}>
       <h2 className={styles['profile__login']}>{login}</h2>
       {isAdminPanel && <AdminPanel />}
-      <button
-        type="button"
-        onClick={handleClick}
-        className={styles['profile__button']}
-      >
+      <button type="button" onClick={handleClick} className={styles['profile__button']}>
         {isAdminPanel ? 'Switch to orders' : 'Switch to Admin panel'}
       </button>
     </div>

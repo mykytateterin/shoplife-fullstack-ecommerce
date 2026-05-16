@@ -3,6 +3,9 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "printWidth": 80,
-  "endOfLine": "auto"
+  "printWidth": 100,
+  "endOfLine": "auto",
+  "bracketSpacing": true,
+  "jsxSingleQuote": false,
+  "arrowParens": "always"
 }

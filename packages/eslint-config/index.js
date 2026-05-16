@@ -11,5 +11,5 @@ export const baseConfig = tseslint.config(
       ecmaVersion: 2022,
     },
   },
-  eslintConfigPrettier
+  eslintConfigPrettier,
 );

@@ -8,12 +8,8 @@ export const setCookie = (
   Cookies.set(name, value, options);
 };
 
-export const getCookie = (name: string): string | undefined =>
-  Cookies.get(name);
+export const getCookie = (name: string): string | undefined => Cookies.get(name);
 
-export const removeCookie = (
-  name: string,
-  options?: Cookies.CookieAttributes,
-): void => {
+export const removeCookie = (name: string, options?: Cookies.CookieAttributes): void => {
   Cookies.remove(name, options);
 };
