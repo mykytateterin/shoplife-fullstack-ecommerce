@@ -4,6 +4,12 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@prisma/client':
+      specifier: ^7.8.0
+      version: 7.8.0
+
 importers:
 
   .:
@@ -106,7 +112,7 @@ importers:
         specifier: ^7.8.0
         version: 7.8.0
       '@prisma/client':
-        specifier: ^7.8.0
+        specifier: 'catalog:'
         version: 7.8.0(prisma@7.8.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@6.0.3))(typescript@6.0.3)
       '@shoplife/shared':
         specifier: workspace:*
@@ -166,6 +172,9 @@ importers:
 
   packages/shared:
     dependencies:
+      '@prisma/client':
+        specifier: 'catalog:'
+        version: 7.8.0(prisma@7.8.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@6.0.3))(typescript@6.0.3)
       zod:
         specifier: ^4.4.3
         version: 4.4.3

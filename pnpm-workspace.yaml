@@ -5,3 +5,5 @@ allowBuilds:
 packages:
   - 'apps/*'
   - 'packages/*'
+catalog:
+  '@prisma/client': '^7.8.0'

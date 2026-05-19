@@ -1,5 +1,5 @@
 import { AppException } from '../../core/exceptions/AppException.js';
-import { Prisma } from '../../infrastructure/database/prisma/generated/client.js';
+import { Prisma } from '@shoplife/shared';
 import { usersRepository } from './users.repository.js';
 
 export const usersService = {

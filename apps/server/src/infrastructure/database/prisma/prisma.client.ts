@@ -1,4 +1,4 @@
-import { PrismaClient } from './generated/client.js';
+import { PrismaClient } from '@shoplife/shared';
 import pg from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 

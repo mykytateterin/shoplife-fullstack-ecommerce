@@ -1,10 +1,16 @@
 generator client {
   provider = "prisma-client"
-  output   = "./generated"
+  output   = "../../../../../../packages/shared/src/database/prisma/generated"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  MANAGER
 }
 
 model User {

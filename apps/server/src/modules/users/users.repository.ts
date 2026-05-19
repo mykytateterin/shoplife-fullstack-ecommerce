@@ -1,4 +1,4 @@
-import { Prisma } from '../../infrastructure/database/prisma/generated/client.js';
+import { Prisma } from '@shoplife/shared';
 import { prisma } from '../../infrastructure/database/prisma/prisma.client.js';
 
 export const usersRepository = {
