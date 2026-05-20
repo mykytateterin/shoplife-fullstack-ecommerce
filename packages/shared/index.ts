@@ -1,1 +1,2 @@
 export { UserRole, PrismaClient, Prisma } from './src/database/prisma/generated/client.js';
+export * from './src/validation/index.js';
