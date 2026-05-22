@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint-config-prettier": "^10.1.8",
-    "globals": "^17.6.0",
-    "typescript-eslint": "^8.59.3"
+    "@eslint/js": "catalog:eslint-config",
+    "eslint-config-prettier": "catalog:eslint-config",
+    "globals": "catalog:eslint-config",
+    "typescript-eslint": "catalog:eslint-config"
   }
 }
