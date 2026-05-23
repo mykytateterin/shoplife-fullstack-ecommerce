@@ -1,6 +1,7 @@
 {
   "name": "shoplife-monorepo",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev:client": "pnpm --filter @shoplife/client dev",
     "dev:server": "pnpm --filter @shoplife/server dev",

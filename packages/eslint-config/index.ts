@@ -1,15 +1,18 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import globals from 'globals';
 
-export const baseConfig = tseslint.config(
+export { globals };
+
+export const baseConfig = [
   { ignores: ['dist', 'build', 'node_modules'] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx,js,jsx}'],
     languageOptions: {
       ecmaVersion: 2022,
     },
   },
   eslintConfigPrettier,
-);
+];

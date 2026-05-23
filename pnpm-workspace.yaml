@@ -1,40 +1,37 @@
 allowBuilds:
   '@prisma/engines': true
-  esbuild: false
+  esbuild: true
   prisma: true
 packages:
   - 'apps/*'
   - 'packages/*'
 catalogMode: 'strict'
 catalog:
+  '@types/node': '^25.9.1'
+  '@prisma/client': '^7.8.0'
   'typescript': '^6.0.3'
   'eslint': '^10.4.0'
-  '@types/node': '^25.8.0'
   'prettier': '^3.8.3'
-  '@prisma/client': '^7.8.0'
   'zod': '^4.4.3'
 catalogs:
   client:
-    '@react-router/dev': '7.15.1'
-    '@react-router/fs-routes': '^7.15.1'
-    '@tailwindcss/vite': '^4.3.0'
     '@types/react': '^19.2.14'
     '@types/react-dom': '^19.2.3'
-    'eslint-plugin-react': '^7.37.5'
-    'eslint-plugin-react-hooks': '^7.1.1'
-    'eslint-plugin-react-refresh': '^0.5.2'
-    'tailwindcss': '^4.3.0'
-    'vite': '^8.0.13'
+    '@types/js-cookie': '^3.0.6'
+    '@react-router/dev': '7.15.1'
+    '@react-router/fs-routes': '^7.15.1'
     '@react-router/node': '7.15.1'
     '@react-router/serve': '7.15.1'
-    '@types/js-cookie': '^3.0.6'
-    'framer-motion': '^12.38.0'
-    'isbot': '^5.1.40'
-    'js-cookie': '^3.0.5'
-    'normalize.css': '^8.0.1'
     'react': '^19.2.6'
     'react-dom': '^19.2.6'
     'react-router': '7.15.1'
+    'eslint-plugin-react': '^7.37.5'
+    'eslint-plugin-react-hooks': '^7.1.1'
+    'eslint-plugin-react-refresh': '^0.5.2'
+    'vite': '^8.0.13'
+    'framer-motion': '^12.38.0'
+    'js-cookie': '^3.0.5'
+    'normalize.css': '^8.0.1'
     'sass-embedded': '^1.99.0'
     'zustand': '^5.0.13'
   server:
@@ -42,9 +39,9 @@ catalogs:
     '@types/cors': '^2.8.19'
     '@types/express': '^5.0.6'
     '@types/pg': '^8.20.0'
+    '@prisma/adapter-pg': '^7.8.0'
     'prisma': '^7.8.0'
     'tsx': '^4.22.0'
-    '@prisma/adapter-pg': '^7.8.0'
     'cookie-parser': '^1.4.7'
     'cors': '^2.8.6'
     'dotenv': '^17.4.2'
@@ -53,5 +50,5 @@ catalogs:
   eslint-config:
     '@eslint/js': '^10.0.1'
     'eslint-config-prettier': '^10.1.8'
-    'globals': '^17.6.0'
     'typescript-eslint': '^8.59.3'
+    'globals': '^17.6.0'

@@ -1,11 +1,12 @@
 {
   "name": "@shoplife/eslint-config",
-  "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
   "dependencies": {
     "@eslint/js": "catalog:eslint-config",
     "eslint-config-prettier": "catalog:eslint-config",
-    "globals": "catalog:eslint-config",
-    "typescript-eslint": "catalog:eslint-config"
+    "typescript-eslint": "catalog:eslint-config",
+    "globals": "catalog:eslint-config"
   }
 }

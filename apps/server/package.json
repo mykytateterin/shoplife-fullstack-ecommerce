@@ -12,7 +12,6 @@
     "@prisma/adapter-pg": "catalog:server",
     "cookie-parser": "catalog:server",
     "cors": "catalog:server",
-    "dotenv": "catalog:server",
     "express": "catalog:server",
     "pg": "catalog:server",
     "@prisma/client": "catalog:",
@@ -24,6 +23,7 @@
     "@types/cors": "catalog:server",
     "@types/express": "catalog:server",
     "@types/pg": "catalog:server",
+    "dotenv": "catalog:server",
     "prisma": "catalog:server",
     "tsx": "catalog:server",
     "@shoplife/eslint-config": "workspace:*"
