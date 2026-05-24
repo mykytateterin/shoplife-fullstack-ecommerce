@@ -1,9 +1,11 @@
 import { baseConfig, globals } from '@shoplife/eslint-config';
+import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
   ...baseConfig,
+  reactPlugin.configs.flat['jsx-runtime'],
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
