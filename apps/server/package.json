@@ -27,6 +27,7 @@
     "dotenv": "catalog:server",
     "prisma": "catalog:server",
     "tsx": "catalog:server",
-    "@shoplife/eslint-config": "workspace:*"
+    "@shoplife/eslint-config": "workspace:*",
+    "@shoplife/tsconfig": "workspace:*"
   }
 }

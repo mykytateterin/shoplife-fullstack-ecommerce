@@ -13,5 +13,8 @@
     "eslint-plugin-simple-import-sort": "catalog:eslint-config",
     "globals": "catalog:eslint-config",
     "typescript-eslint": "catalog:eslint-config"
+  },
+  "devDependencies": {
+    "@shoplife/tsconfig": "workspace:*"
   }
 }

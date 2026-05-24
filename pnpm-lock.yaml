@@ -198,6 +198,9 @@ importers:
       '@shoplife/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@shoplife/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
       '@types/js-cookie':
         specifier: catalog:client
         version: 3.0.6
@@ -253,6 +256,9 @@ importers:
       '@shoplife/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@shoplife/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
       '@types/cookie-parser':
         specifier: catalog:server
         version: 1.4.10(@types/express@5.0.6)
@@ -292,6 +298,10 @@ importers:
       typescript-eslint:
         specifier: catalog:eslint-config
         version: 8.59.4(eslint@10.4.0(jiti@2.7.0))(typescript@6.0.3)
+    devDependencies:
+      '@shoplife/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
 
   packages/shared:
     dependencies:
@@ -301,6 +311,15 @@ importers:
       zod:
         specifier: 'catalog:'
         version: 4.4.3
+    devDependencies:
+      '@shoplife/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@shoplife/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+
+  packages/tsconfig:
     devDependencies:
       '@shoplife/eslint-config':
         specifier: workspace:*

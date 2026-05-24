@@ -1,25 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig.json",
-  "include": ["**/*"],
+  "extends": "@shoplife/tsconfig/bundler.json",
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2025"],
-    "types": ["node", "vite/client"],
-    "target": "ES2025",
-    "module": "ES2022",
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
     "rootDirs": [".", "./.react-router/types"],
     "paths": {
       "~/*": ["./app/*"]
-    },
-    "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "noUncheckedIndexedAccess": true
+    }
   }
 }

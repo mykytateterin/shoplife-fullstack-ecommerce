@@ -12,6 +12,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@shoplife/eslint-config": "workspace:*"
+    "@shoplife/eslint-config": "workspace:*",
+    "@shoplife/tsconfig": "workspace:*"
   }
 }

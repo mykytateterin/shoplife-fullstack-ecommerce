@@ -1,18 +1,4 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig.json",
-  "compilerOptions": {
-    "target": "es2025",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "types": ["node"]
-  },
-  "include": ["**/*"]
+  "extends": "@shoplife/tsconfig/node.json"
 }
