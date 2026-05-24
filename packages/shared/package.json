@@ -3,8 +3,15 @@
   "private": true,
   "type": "module",
   "main": "index.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
   "dependencies": {
     "@prisma/client": "catalog:",
     "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@shoplife/eslint-config": "workspace:*"
   }
 }
