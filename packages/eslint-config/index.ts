@@ -1,11 +1,12 @@
 import js from '@eslint/js';
+import gitignore from 'eslint-config-flat-gitignore';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export const baseConfig = [
-  { ignores: ['dist', 'build', 'node_modules'] },
+  gitignore(),
   js.configs.recommended,
   ...tseslint.configs.strictTypeChecked.map((config) => ({
     ...config,
