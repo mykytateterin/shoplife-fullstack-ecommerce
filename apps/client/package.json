@@ -1,4 +1,5 @@
 {
+  "$schema": "https://www.schemastore.org/package.json",
   "name": "@shoplife/client",
   "private": true,
   "type": "module",
