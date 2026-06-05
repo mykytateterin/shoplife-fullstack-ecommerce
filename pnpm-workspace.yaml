@@ -11,7 +11,7 @@ catalog:
   '@types/node': '^25.9.1'
   '@prisma/client': '^7.8.0'
   'typescript': '^6.0.3'
-  'eslint': '^10.4.0'
+  'eslint': '^10.4.1'
   'prettier': '^3.8.3'
   'zod': '^4.4.3'
 catalogs:
