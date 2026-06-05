@@ -1,13 +1,5 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
-  "name": "@shoplife/shared",
-  "private": true,
-  "type": "module",
-  "main": "index.ts",
-  "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
-  },
   "dependencies": {
     "@prisma/client": "catalog:",
     "zod": "catalog:"
@@ -15,5 +7,13 @@
   "devDependencies": {
     "@shoplife/eslint-config": "workspace:*",
     "@shoplife/tsconfig": "workspace:*"
-  }
+  },
+  "main": "index.ts",
+  "name": "@shoplife/shared",
+  "private": true,
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "type": "module"
 }

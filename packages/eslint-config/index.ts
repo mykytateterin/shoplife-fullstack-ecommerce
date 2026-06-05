@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import gitignore from 'eslint-config-flat-gitignore';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import jsonc from 'eslint-plugin-jsonc';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -16,6 +17,7 @@ export const baseConfig = [
     ...config,
     files: ['**/*.{ts,tsx,mts,cts}'],
   })),
+  ...jsonc.configs['flat/recommended-with-jsonc'],
   { languageOptions: { ecmaVersion: 'latest', sourceType: 'module' } },
   {
     plugins: { 'simple-import-sort': simpleImportSort },
@@ -24,6 +26,7 @@ export const baseConfig = [
       'no-console': 'warn',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
+      'jsonc/sort-keys': 'error',
     },
   },
   eslintConfigPrettier,

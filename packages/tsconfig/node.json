@@ -1,9 +1,9 @@
 {
   "$schema": "https://www.schemastore.org/tsconfig.json",
-  "extends": "./_base.json",
   "compilerOptions": {
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "types": ["node"]
-  }
+  },
+  "extends": "./_base.json"
 }

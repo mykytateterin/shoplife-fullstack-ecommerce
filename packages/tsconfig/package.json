@@ -1,13 +1,13 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
+  "devDependencies": {
+    "@shoplife/eslint-config": "workspace:*"
+  },
   "name": "@shoplife/tsconfig",
   "private": true,
-  "type": "module",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "devDependencies": {
-    "@shoplife/eslint-config": "workspace:*"
-  }
+  "type": "module"
 }

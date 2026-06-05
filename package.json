@@ -1,17 +1,17 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  },
   "name": "shoplife-monorepo",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev:client": "pnpm --filter @shoplife/client dev",
     "dev:server": "pnpm --filter @shoplife/server dev",
     "format": "prettier --write ."
   },
-  "devDependencies": {
-    "@types/node": "catalog:",
-    "prettier": "catalog:",
-    "eslint": "catalog:",
-    "typescript": "catalog:"
-  }
+  "type": "module"
 }

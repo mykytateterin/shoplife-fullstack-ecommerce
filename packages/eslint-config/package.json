@@ -1,22 +1,23 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
-  "name": "@shoplife/eslint-config",
-  "private": true,
-  "type": "module",
-  "main": "index.ts",
-  "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
-  },
   "dependencies": {
     "@eslint/js": "catalog:eslint-config",
     "eslint-config-flat-gitignore": "catalog:eslint-config",
     "eslint-config-prettier": "catalog:eslint-config",
+    "eslint-plugin-jsonc": "catalog:eslint-config",
     "eslint-plugin-simple-import-sort": "catalog:eslint-config",
     "globals": "catalog:eslint-config",
     "typescript-eslint": "catalog:eslint-config"
   },
   "devDependencies": {
     "@shoplife/tsconfig": "workspace:*"
-  }
+  },
+  "main": "index.ts",
+  "name": "@shoplife/eslint-config",
+  "private": true,
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "type": "module"
 }
