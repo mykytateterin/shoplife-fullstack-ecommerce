@@ -8,7 +8,7 @@ packages:
   - 'packages/*'
 catalogMode: 'strict'
 catalog:
-  '@types/node': '^25.9.1'
+  '@types/node': '^25.9.2'
   '@prisma/client': '^7.8.0'
   'typescript': '^6.0.3'
   'eslint': '^10.4.1'
