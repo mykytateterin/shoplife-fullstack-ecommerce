@@ -36,6 +36,12 @@ const typeCheckedConfig = [
     ...config,
     files: ['**/*.{ts,tsx,mts,cts}'],
   })),
+  {
+    files: ['**/*.{ts,tsx,mts,cts}'],
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    },
+  },
 ];
 
 const jsLikeFileClaim = {
