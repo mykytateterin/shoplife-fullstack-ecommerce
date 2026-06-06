@@ -16,6 +16,10 @@ const commonConfig = [
     rules: {
       'no-undef': 'off',
       'no-console': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
       'jsonc/sort-keys': 'error',
