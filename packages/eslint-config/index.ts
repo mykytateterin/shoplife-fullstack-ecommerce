@@ -6,17 +6,9 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export const baseConfig = [
+const commonConfig = [
   gitignore(),
   js.configs.recommended,
-  ...tseslint.configs.strictTypeChecked.map((config) => ({
-    ...config,
-    files: ['**/*.{ts,tsx,mts,cts}'],
-  })),
-  ...tseslint.configs.stylisticTypeChecked.map((config) => ({
-    ...config,
-    files: ['**/*.{ts,tsx,mts,cts}'],
-  })),
   ...jsonc.configs['flat/recommended-with-jsonc'],
   { languageOptions: { ecmaVersion: 'latest', sourceType: 'module' } },
   {
@@ -29,7 +21,25 @@ export const baseConfig = [
       'jsonc/sort-keys': 'error',
     },
   },
-  eslintConfigPrettier,
 ];
+
+const typeCheckedConfig = [
+  ...tseslint.configs.strictTypeChecked.map((config) => ({
+    ...config,
+    files: ['**/*.{ts,tsx,mts,cts}'],
+  })),
+  ...tseslint.configs.stylisticTypeChecked.map((config) => ({
+    ...config,
+    files: ['**/*.{ts,tsx,mts,cts}'],
+  })),
+];
+
+const jsLikeFileClaim = {
+  files: ['**/*.{js,mjs,cjs,ts,tsx,mts,cts}'],
+};
+
+export const baseConfig = [...commonConfig, ...typeCheckedConfig, eslintConfigPrettier];
+
+export const rootConfig = [...commonConfig, jsLikeFileClaim, eslintConfigPrettier];
 
 export { globals };
