@@ -1,7 +1,8 @@
 export class AppException extends Error {
   constructor(
-    public readonly statusCode: number,
+    readonly statusCode: number,
     message: string,
+    readonly details?: unknown,
   ) {
     super(message);
 
