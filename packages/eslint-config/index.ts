@@ -20,6 +20,17 @@ const commonConfig = [
         'error',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
       ],
+      '@typescript-eslint/explicit-function-return-type': [
+        'error',
+        {
+          allowHigherOrderFunctions: true,
+          allowTypedFunctionExpressions: true,
+          allowExpressions: true,
+        },
+      ],
+      '@typescript-eslint/explicit-module-boundary-types': 'error',
+      '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
+      '@typescript-eslint/consistent-type-imports': 'error',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
       'jsonc/sort-keys': 'error',
