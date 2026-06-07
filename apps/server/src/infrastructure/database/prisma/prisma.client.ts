@@ -1,6 +1,6 @@
+import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@shoplife/shared';
 import pg from 'pg';
-import { PrismaPg } from '@prisma/adapter-pg';
 
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
