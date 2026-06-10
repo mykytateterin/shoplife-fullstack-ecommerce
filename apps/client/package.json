@@ -1,41 +1,38 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
-  "name": "@shoplife/client",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "react-router build",
-    "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
-  },
   "dependencies": {
     "@react-router/node": "catalog:client",
     "@react-router/serve": "catalog:client",
-    "react": "catalog:client",
-    "react-dom": "catalog:client",
-    "react-router": "catalog:client",
+    "@shoplife/shared": "workspace:*",
     "framer-motion": "catalog:client",
     "js-cookie": "catalog:client",
     "normalize.css": "catalog:client",
-    "zustand": "catalog:client",
+    "react": "catalog:client",
+    "react-dom": "catalog:client",
+    "react-router": "catalog:client",
     "zod": "catalog:",
-    "@shoplife/shared": "workspace:*"
+    "zustand": "catalog:client"
   },
   "devDependencies": {
+    "@react-router/dev": "catalog:client",
+    "@react-router/fs-routes": "catalog:client",
+    "@shoplife/eslint-config": "workspace:*",
+    "@shoplife/tsconfig": "workspace:*",
     "@types/js-cookie": "catalog:client",
     "@types/react": "catalog:client",
     "@types/react-dom": "catalog:client",
-    "@react-router/dev": "catalog:client",
-    "@react-router/fs-routes": "catalog:client",
-    "eslint-plugin-react": "catalog:client",
-    "eslint-plugin-react-hooks": "catalog:client",
-    "eslint-plugin-react-refresh": "catalog:client",
     "sass-embedded": "catalog:client",
-    "vite": "catalog:client",
-    "@shoplife/eslint-config": "workspace:*",
-    "@shoplife/tsconfig": "workspace:*"
-  }
+    "vite": "catalog:client"
+  },
+  "name": "@shoplife/client",
+  "private": true,
+  "scripts": {
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
+  },
+  "type": "module"
 }
