@@ -1,16 +1,17 @@
-import js from '@eslint/js';
 import type { Linter } from 'eslint';
+
+import js from '@eslint/js';
 import gitignore from 'eslint-config-flat-gitignore';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import jsonc from 'eslint-plugin-jsonc';
+import perfectionist from 'eslint-plugin-perfectionist';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-type Target = 'base' | 'react' | 'node';
+type Target = 'base' | 'node' | 'react';
 
 const tsLikeFilesClaim = {
   files: ['**/*.{ts,tsx,mts,cts}'],
@@ -30,12 +31,12 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
 
   const jsAndTsLanguageOptions: Linter.LanguageOptions = {
     ecmaVersion: 'latest',
-    sourceType: 'module',
     parser: tseslint.parser,
     parserOptions: {
       projectService: true,
       tsconfigRootDir: rootDir,
     },
+    sourceType: 'module',
     ...(targetGlobals && { globals: targetGlobals }),
   };
 
@@ -45,35 +46,36 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
     ...jsonc.configs['flat/recommended-with-json'],
     {
       ...jsAndTsLikeFilesClaim,
+      ...perfectionist.configs['recommended-natural'],
+    },
+    {
+      ...jsAndTsLikeFilesClaim,
       languageOptions: jsAndTsLanguageOptions,
       plugins: {
-        'simple-import-sort': simpleImportSort,
         '@typescript-eslint': tseslint.plugin,
       },
       rules: {
-        'no-undef': 'off',
-        'no-console': 'warn',
-        '@typescript-eslint/no-unused-vars': [
-          'error',
-          { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
-        ],
+        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+        '@typescript-eslint/consistent-type-imports': 'error',
         '@typescript-eslint/explicit-function-return-type': [
           'error',
           {
+            allowExpressions: true,
             allowHigherOrderFunctions: true,
             allowTypedFunctionExpressions: true,
-            allowExpressions: true,
           },
         ],
-        '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/explicit-member-accessibility': [
           'error',
           { accessibility: 'no-public' },
         ],
-        '@typescript-eslint/consistent-type-imports': 'error',
-        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
-        'simple-import-sort/imports': 'error',
-        'simple-import-sort/exports': 'error',
+        '@typescript-eslint/explicit-module-boundary-types': 'error',
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+        ],
+        'no-console': 'warn',
+        'no-undef': 'off',
       },
     },
     {
@@ -83,8 +85,8 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
         'jsonc/sort-array-values': [
           'error',
           {
-            pathPattern: '.*',
             order: { natural: true },
+            pathPattern: '.*',
           },
         ],
         'jsonc/sort-keys': [
