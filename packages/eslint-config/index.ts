@@ -42,7 +42,7 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
   const commonConfig: Linter.Config[] = [
     gitignore(),
     js.configs.recommended,
-    ...jsonc.configs['flat/recommended-with-jsonc'],
+    ...jsonc.configs['flat/recommended-with-json'],
     {
       ...jsAndTsLikeFilesClaim,
       languageOptions: jsAndTsLanguageOptions,
@@ -79,7 +79,21 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
     {
       ...jsonLikeFilesClaim,
       rules: {
-        'jsonc/sort-keys': 'error',
+        'jsonc/array-bracket-spacing': ['error', 'never'],
+        'jsonc/sort-array-values': [
+          'error',
+          {
+            pathPattern: '.*',
+            order: { natural: true },
+          },
+        ],
+        'jsonc/sort-keys': [
+          'error',
+          'asc',
+          {
+            natural: true,
+          },
+        ],
       },
     },
     ...tseslint.configs.strictTypeChecked.map((config) => ({
