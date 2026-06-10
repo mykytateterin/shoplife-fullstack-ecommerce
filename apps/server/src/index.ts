@@ -1,12 +1,14 @@
 import 'dotenv/config';
-import express from 'express';
-import cors from 'cors';
+
 import cookieParser from 'cookie-parser';
-import { usersRouter } from './modules/users/users.route.js';
+import cors from 'cors';
+import express from 'express';
+
 import { errorMiddleware } from './core/middlewares/error.middleware.js';
+import { usersRouter } from './modules/users/users.route.js';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = String(process.env.PORT ?? 5000);
 
 app.use(
   cors({
