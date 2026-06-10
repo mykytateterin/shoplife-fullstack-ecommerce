@@ -5,8 +5,12 @@
     "lib": ["DOM", "DOM.Iterable", "ES2025"],
     "module": "ES2022",
     "moduleResolution": "bundler",
+    "paths": {
+      "~/*": ["./app/*"]
+    },
     "resolveJsonModule": true,
+    "rootDirs": [".", "./.react-router/types"],
     "types": ["node", "vite/client"]
   },
-  "extends": "./_base.json"
+  "extends": "./base.json"
 }

@@ -5,5 +5,5 @@
     "moduleResolution": "nodenext",
     "types": ["node"]
   },
-  "extends": "./_base.json"
+  "extends": "./base.json"
 }
