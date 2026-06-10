@@ -1,8 +1,11 @@
-import { Request, Response } from 'express';
+import type { SignUpInput } from '@shoplife/shared';
+import type { Response } from 'express';
+
+import type { TypedRequestBody } from '../../types/express.js';
 import { usersService } from './users.service.js';
 
 export const usersController = {
-  signUp: async (req: Request, res: Response) => {
+  signUp: async (req: TypedRequestBody<SignUpInput>, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
     const createdUser = await usersService.signUp({ email, password });

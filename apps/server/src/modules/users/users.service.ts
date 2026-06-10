@@ -1,9 +1,11 @@
+import type { Prisma } from '@shoplife/shared';
+
 import { AppException } from '../../core/exceptions/AppException.js';
-import { Prisma } from '@shoplife/shared';
+import type { UserResponse } from './users.dto.js';
 import { usersRepository } from './users.repository.js';
 
 export const usersService = {
-  signUp: async (data: Prisma.UserCreateInput) => {
+  signUp: async (data: Prisma.UserCreateInput): Promise<UserResponse> => {
     const existingUser = await usersRepository.findByEmail(data.email);
 
     if (existingUser) {
