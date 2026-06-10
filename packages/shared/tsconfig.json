@@ -1,4 +1,4 @@
 {
   "$schema": "https://www.schemastore.org/tsconfig.json",
-  "extends": "@shoplife/tsconfig/node.json"
+  "extends": "@shoplife/tsconfig/node"
 }

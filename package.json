@@ -2,6 +2,7 @@
   "$schema": "https://www.schemastore.org/package.json",
   "devDependencies": {
     "@shoplife/eslint-config": "workspace:*",
+    "@shoplife/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "eslint": "catalog:",
     "husky": "catalog:",

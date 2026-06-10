@@ -1,10 +1,4 @@
 {
   "$schema": "https://www.schemastore.org/tsconfig.json",
-  "extends": "@shoplife/tsconfig/bundler.json",
-  "compilerOptions": {
-    "rootDirs": [".", "./.react-router/types"],
-    "paths": {
-      "~/*": ["./app/*"]
-    }
-  }
+  "extends": "@shoplife/tsconfig/bundler"
 }

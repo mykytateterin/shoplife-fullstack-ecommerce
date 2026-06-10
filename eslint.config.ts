@@ -1,3 +1,3 @@
-import { rootConfig } from '@shoplife/eslint-config';
+import { createConfig } from '@shoplife/eslint-config';
 
-export default [...rootConfig];
+export default createConfig(import.meta.dirname, 'base');

@@ -1,13 +1,3 @@
-import { baseConfig } from './index.js';
+import { createConfig } from './index.js';
 
-export default [
-  ...baseConfig,
-  {
-    languageOptions: {
-      parserOptions: {
-        tsconfigRootDir: import.meta.dirname,
-        project: ['./tsconfig.json'],
-      },
-    },
-  },
-];
+export default createConfig(import.meta.dirname, 'base');

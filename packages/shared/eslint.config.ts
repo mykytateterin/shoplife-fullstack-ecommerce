@@ -1,13 +1,3 @@
-import { baseConfig } from '@shoplife/eslint-config';
+import { createConfig } from '@shoplife/eslint-config';
 
-export default [
-  ...baseConfig,
-  {
-    languageOptions: {
-      parserOptions: {
-        tsconfigRootDir: import.meta.dirname,
-        project: ['./tsconfig.json'],
-      },
-    },
-  },
-];
+export default createConfig(import.meta.dirname, 'base');
