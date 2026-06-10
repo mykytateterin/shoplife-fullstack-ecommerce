@@ -5,6 +5,9 @@
     "eslint-config-flat-gitignore": "catalog:eslint-config",
     "eslint-config-prettier": "catalog:eslint-config",
     "eslint-plugin-jsonc": "catalog:eslint-config",
+    "eslint-plugin-react": "catalog:eslint-config",
+    "eslint-plugin-react-hooks": "catalog:eslint-config",
+    "eslint-plugin-react-refresh": "catalog:eslint-config",
     "eslint-plugin-simple-import-sort": "catalog:eslint-config",
     "globals": "catalog:eslint-config",
     "typescript-eslint": "catalog:eslint-config"
