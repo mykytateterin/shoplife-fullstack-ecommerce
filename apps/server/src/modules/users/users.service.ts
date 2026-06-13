@@ -1,7 +1,8 @@
 import type { Prisma } from '@shoplife/shared';
 
-import { AppException } from '../../core/exceptions/AppException.js';
 import type { UserResponse } from './users.dto.js';
+
+import { AppException } from '../../core/exceptions/AppException.js';
 import { usersRepository } from './users.repository.js';
 
 export const usersService = {

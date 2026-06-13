@@ -1,5 +1,4 @@
 import 'dotenv/config';
-
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
@@ -12,8 +11,8 @@ const PORT = String(process.env.PORT ?? 5000);
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
     credentials: true,
+    origin: 'http://localhost:5173',
   }),
 );
 app.use(express.json());
@@ -22,7 +21,7 @@ app.use(cookieParser());
 app.use('/api/users', usersRouter);
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Express v5 Backend is running!' });
+  res.json({ message: 'Express v5 Backend is running!', status: 'ok' });
 });
 
 app.use(errorMiddleware);

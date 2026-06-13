@@ -5,8 +5,8 @@ import { ZodException } from '../exceptions/ZodException.js';
 
 type RequestSchema = {
   body?: ZodType;
-  query?: ZodType;
   params?: ZodType;
+  query?: ZodType;
 };
 
 export const validateRequest = (schema: RequestSchema) => {

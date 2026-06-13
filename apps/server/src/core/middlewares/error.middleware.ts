@@ -12,15 +12,15 @@ export const errorMiddleware = (
 
   if (error instanceof AppException) {
     res.status(error.statusCode).json({
-      success: false,
       error: error.message,
+      success: false,
       ...(error.details !== undefined && { details: error.details }),
     });
     return;
   }
 
   res.status(500).json({
-    success: false,
     error: 'Internal Server Error',
+    success: false,
   });
 };
