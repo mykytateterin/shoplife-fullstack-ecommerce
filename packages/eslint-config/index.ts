@@ -8,6 +8,7 @@ import perfectionist from 'eslint-plugin-perfectionist';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -40,78 +41,10 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
     ...(targetGlobals && { globals: targetGlobals }),
   };
 
-  const commonConfig: Linter.Config[] = [
-    gitignore(),
-    js.configs.recommended,
-    ...jsonc.configs['flat/recommended-with-json'],
-    {
-      ...jsAndTsLikeFilesClaim,
-      ...perfectionist.configs['recommended-natural'],
-    },
-    {
-      ...jsAndTsLikeFilesClaim,
-      languageOptions: jsAndTsLanguageOptions,
-      plugins: {
-        '@typescript-eslint': tseslint.plugin,
-      },
-      rules: {
-        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
-        '@typescript-eslint/consistent-type-imports': 'error',
-        '@typescript-eslint/explicit-function-return-type': [
-          'error',
-          {
-            allowExpressions: true,
-            allowHigherOrderFunctions: true,
-            allowTypedFunctionExpressions: true,
-          },
-        ],
-        '@typescript-eslint/explicit-member-accessibility': [
-          'error',
-          { accessibility: 'no-public' },
-        ],
-        '@typescript-eslint/explicit-module-boundary-types': 'error',
-        '@typescript-eslint/no-unused-vars': [
-          'error',
-          { argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-        ],
-        'no-console': 'warn',
-        'no-undef': 'off',
-      },
-    },
-    {
-      ...jsonLikeFilesClaim,
-      rules: {
-        'jsonc/array-bracket-spacing': ['error', 'never'],
-        'jsonc/sort-array-values': [
-          'error',
-          {
-            order: { natural: true },
-            pathPattern: '.*',
-          },
-        ],
-        'jsonc/sort-keys': [
-          'error',
-          'asc',
-          {
-            natural: true,
-          },
-        ],
-      },
-    },
-    ...tseslint.configs.strictTypeChecked.map((config) => ({
-      ...config,
-      ...tsLikeFilesClaim,
-    })),
-    ...tseslint.configs.stylisticTypeChecked.map((config) => ({
-      ...config,
-      ...tsLikeFilesClaim,
-    })),
-  ];
-
   const targetSpecific: Linter.Config[] = [];
 
   if (target === 'react') {
-    const reactFlatConfigs = reactPlugin.configs.flat;
+    const reactFlatConfigs = reactPlugin.configs.flat as Record<string, Linter.Config>;
     const jsxRuntimeConfig = reactFlatConfigs['jsx-runtime'];
 
     if (jsxRuntimeConfig) {
@@ -143,7 +76,67 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
     });
   }
 
-  return [...commonConfig, ...targetSpecific, eslintConfigPrettier];
+  return defineConfig([
+    gitignore(),
+    {
+      ...jsAndTsLikeFilesClaim,
+      extends: [js.configs.recommended, perfectionist.configs['recommended-natural']],
+      languageOptions: jsAndTsLanguageOptions,
+      plugins: {
+        '@typescript-eslint': tseslint.plugin,
+      },
+      rules: {
+        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+        '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/explicit-function-return-type': [
+          'error',
+          {
+            allowExpressions: true,
+            allowHigherOrderFunctions: true,
+            allowTypedFunctionExpressions: true,
+          },
+        ],
+        '@typescript-eslint/explicit-member-accessibility': [
+          'error',
+          { accessibility: 'no-public' },
+        ],
+        '@typescript-eslint/explicit-module-boundary-types': 'error',
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+        ],
+        'no-console': 'warn',
+        'no-undef': 'off',
+      },
+    },
+    {
+      ...tsLikeFilesClaim,
+      extends: [...tseslint.configs.strictTypeChecked, ...tseslint.configs.stylisticTypeChecked],
+    },
+    {
+      ...jsonLikeFilesClaim,
+      extends: [...jsonc.configs['flat/recommended-with-json']],
+      rules: {
+        'jsonc/array-bracket-spacing': ['error', 'never'],
+        'jsonc/sort-array-values': [
+          'error',
+          {
+            order: { natural: true },
+            pathPattern: '.*',
+          },
+        ],
+        'jsonc/sort-keys': [
+          'error',
+          'asc',
+          {
+            natural: true,
+          },
+        ],
+      },
+    },
+    ...targetSpecific,
+    eslintConfigPrettier,
+  ]);
 };
 
 export { createConfig };
