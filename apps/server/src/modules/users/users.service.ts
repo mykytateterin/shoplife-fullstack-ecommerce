@@ -1,4 +1,4 @@
-import type { Prisma } from '@shoplife/shared';
+import type { SignUpInput } from '@shoplife/shared';
 
 import bcrypt from 'bcrypt';
 
@@ -8,7 +8,7 @@ import { AppException } from '../../core/exceptions/AppException.js';
 import { usersRepository } from './users.repository.js';
 
 export const usersService = {
-  signUp: async (data: Prisma.UserCreateInput): Promise<UserResponse> => {
+  signUp: async (data: SignUpInput): Promise<UserResponse> => {
     const existingUser = await usersRepository.findByEmail(data.email);
 
     if (existingUser) {
