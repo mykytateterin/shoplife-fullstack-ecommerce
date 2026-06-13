@@ -1,5 +1,7 @@
 import type { Prisma } from '@shoplife/shared';
 
+import bcrypt from 'bcrypt';
+
 import type { UserResponse } from './users.dto.js';
 
 import { AppException } from '../../core/exceptions/AppException.js';
@@ -13,6 +15,15 @@ export const usersService = {
       throw new AppException(409, 'Email is already in use');
     }
 
-    return usersRepository.create(data);
+    const saltRounds = parseInt(process.env.SALT_ROUNDS ?? '12', 10);
+
+    const hash = await bcrypt.hash(data.password, saltRounds);
+
+    const userDataWithHashedPassword = {
+      ...data,
+      password: hash,
+    };
+
+    return usersRepository.create(userDataWithHashedPassword);
   },
 };

@@ -4,6 +4,7 @@
     "@prisma/adapter-pg": "catalog:server",
     "@prisma/client": "catalog:",
     "@shoplife/shared": "workspace:*",
+    "bcrypt": "catalog:server",
     "cookie-parser": "catalog:server",
     "cors": "catalog:server",
     "express": "catalog:server",
@@ -13,6 +14,7 @@
   "devDependencies": {
     "@shoplife/eslint-config": "workspace:*",
     "@shoplife/tsconfig": "workspace:*",
+    "@types/bcrypt": "catalog:server",
     "@types/cookie-parser": "catalog:server",
     "@types/cors": "catalog:server",
     "@types/express": "catalog:server",
