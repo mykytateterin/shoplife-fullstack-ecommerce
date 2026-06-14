@@ -1,5 +1,4 @@
-import type { Prisma } from '@shoplife/shared';
-
+import type { Prisma } from '../../infrastructure/database/prisma/generated/client.js';
 import type { UserResponse } from './users.dto.js';
 
 import { prisma } from '../../infrastructure/database/prisma/prisma.client.js';

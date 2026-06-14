@@ -1,7 +1,6 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
   "dependencies": {
-    "@prisma/client": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
