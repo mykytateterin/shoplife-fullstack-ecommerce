@@ -51,6 +51,12 @@ export const usersService = {
       password: hash,
     };
 
-    return usersRepository.create(userDataWithHashedPassword);
+    const user = await usersRepository.create(userDataWithHashedPassword);
+
+    return {
+      email: user.email,
+      id: user.id,
+      role: user.role,
+    };
   },
 };
