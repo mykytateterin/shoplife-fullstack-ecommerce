@@ -8,6 +8,7 @@
     "cookie-parser": "catalog:server",
     "cors": "catalog:server",
     "express": "catalog:server",
+    "jose": "catalog:server",
     "pg": "catalog:server",
     "zod": "catalog:"
   },

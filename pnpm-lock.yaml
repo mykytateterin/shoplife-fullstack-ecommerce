@@ -144,6 +144,9 @@ catalogs:
     express:
       specifier: ^5.2.1
       version: 5.2.1
+    jose:
+      specifier: ^6.2.3
+      version: 6.2.3
     pg:
       specifier: ^8.20.0
       version: 8.21.0
@@ -270,6 +273,9 @@ importers:
       express:
         specifier: catalog:server
         version: 5.2.1
+      jose:
+        specifier: catalog:server
+        version: 6.2.3
       pg:
         specifier: catalog:server
         version: 8.21.0
@@ -2515,6 +2521,9 @@ packages:
   jiti@2.7.0:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
+
+  jose@6.2.3:
+    resolution: {integrity: sha512-YYVDInQKFJfR/xa3ojUTl8c2KoTwiL1R5Wg9YCydwH0x0B9grbzlg5HC7mMjCtUJjbQ/YnGEZIhI5tCgfTb4Hw==}
 
   js-cookie@3.0.8:
     resolution: {integrity: sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw==}
@@ -5916,6 +5925,8 @@ snapshots:
       set-function-name: 2.0.2
 
   jiti@2.7.0: {}
+
+  jose@6.2.3: {}
 
   js-cookie@3.0.8: {}
 

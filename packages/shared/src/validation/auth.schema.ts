@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const signUpSchema = z.object({
+const signUpSchema = z.object({
   email: z
     .email({
       message: 'Please enter a valid email address',
@@ -28,4 +28,28 @@ export const signUpSchema = z.object({
     }),
 });
 
-export type SignUpInput = z.infer<typeof signUpSchema>;
+type SignInInput = z.infer<typeof signInSchema>;
+
+const signInSchema = z.object({
+  email: z
+    .email({
+      message: 'Please enter a valid email address',
+    })
+    .trim()
+    .max(255, {
+      message: 'Email cannot exceed 255 characters',
+    }),
+
+  password: z
+    .string({
+      message: 'Password is required',
+    })
+    .max(72, {
+      message: 'Password cannot exceed 72 characters',
+    }),
+});
+
+type SignUpInput = z.infer<typeof signUpSchema>;
+
+export { signInSchema, signUpSchema };
+export type { SignInInput, SignUpInput };
