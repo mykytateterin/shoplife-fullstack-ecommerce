@@ -30,8 +30,8 @@ export const usersController = {
     const createdUser = await usersService.signUp({ email, password });
 
     res.status(201).json({
+      data: createdUser,
       success: true,
-      user: createdUser,
     });
   },
 };
