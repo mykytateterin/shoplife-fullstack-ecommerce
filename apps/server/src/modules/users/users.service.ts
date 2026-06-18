@@ -3,6 +3,7 @@ import type { SignInInput, SignUpInput } from '@shoplife/shared';
 import bcrypt from 'bcrypt';
 import * as jose from 'jose';
 
+import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
 import { type PublicUser, usersRepository } from './users.repository.js';
 
@@ -20,7 +21,7 @@ export const usersService = {
       throw new AppException(401, 'Invalid email or password');
     }
 
-    const jwtSecret = new TextEncoder().encode(process.env.JWT_SECRET);
+    const jwtSecret = new TextEncoder().encode(env.JWT_SECRET);
     const token = await new jose.SignJWT({
       email: foundUser.email,
       role: foundUser.role,
@@ -42,7 +43,7 @@ export const usersService = {
       throw new AppException(409, 'Email is already in use');
     }
 
-    const saltRounds = parseInt(process.env.SALT_ROUNDS ?? '12', 10);
+    const saltRounds = env.SALT_ROUNDS;
 
     const passwordHash = await bcrypt.hash(data.password, saltRounds);
 

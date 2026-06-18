@@ -1,13 +1,13 @@
-import 'dotenv/config';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 
+import { env } from './config/env.js';
 import { errorMiddleware } from './core/middlewares/error.middleware.js';
 import { usersRouter } from './modules/users/users.route.js';
 
 const app = express();
-const PORT = String(process.env.PORT ?? 5000);
+const PORT = env.PORT;
 
 app.use(
   cors({
@@ -27,5 +27,5 @@ app.get('/api/health', (req, res) => {
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${String(PORT)}`);
 });

@@ -3,9 +3,10 @@ import type { Response } from 'express';
 
 import type { TypedRequestBody } from '../../types/express.js';
 
+import { env } from '../../config/env.js';
 import { usersService } from './users.service.js';
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = env.NODE_ENV === 'production';
 
 export const usersController = {
   signIn: async (req: TypedRequestBody<SignInInput>, res: Response): Promise<void> => {
