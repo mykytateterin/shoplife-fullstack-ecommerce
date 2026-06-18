@@ -1,5 +1,3 @@
-import type { SignUpInput } from '@shoplife/shared';
-
 import type { Prisma } from '../../infrastructure/database/prisma/generated/client.js';
 
 import { prisma } from '../../infrastructure/database/prisma/prisma.client.js';
@@ -25,10 +23,18 @@ type AuthUser = Prisma.UserGetPayload<{
   select: typeof authUserSelect;
 }>;
 
+type CreateUserData = {
+  email: string;
+  passwordHash: string;
+};
+
 export const usersRepository = {
-  create: async (data: SignUpInput): Promise<PublicUser> => {
+  create: async (data: CreateUserData): Promise<PublicUser> => {
     return prisma.user.create({
-      data,
+      data: {
+        email: data.email,
+        password: data.passwordHash,
+      },
       select: publicUserSelect,
     });
   },

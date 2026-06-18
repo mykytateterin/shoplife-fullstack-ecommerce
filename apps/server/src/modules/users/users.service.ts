@@ -36,22 +36,20 @@ export const usersService = {
     };
   },
   signUp: async (data: SignUpInput): Promise<PublicUser> => {
-    const existingUser = await usersRepository.findByEmail(data.email);
+    const foundUser = await usersRepository.findByEmail(data.email);
 
-    if (existingUser) {
+    if (foundUser) {
       throw new AppException(409, 'Email is already in use');
     }
 
     const saltRounds = parseInt(process.env.SALT_ROUNDS ?? '12', 10);
 
-    const hash = await bcrypt.hash(data.password, saltRounds);
+    const passwordHash = await bcrypt.hash(data.password, saltRounds);
 
-    const userDataWithHashedPassword = {
-      ...data,
-      password: hash,
-    };
-
-    const user = await usersRepository.create(userDataWithHashedPassword);
+    const user = await usersRepository.create({
+      email: data.email,
+      passwordHash,
+    });
 
     return {
       email: user.email,
