@@ -7,8 +7,18 @@ import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
 import { type PublicUserRecord, usersRepository } from './users.repository.js';
 
+type SignInResult = {
+  token: string;
+};
+
+type SignUpResult = {
+  email: string;
+  id: number;
+  role: PublicUserRecord['role'];
+};
+
 export const usersService = {
-  signIn: async (data: SignInRequest): Promise<{ token: string }> => {
+  signIn: async (data: SignInRequest): Promise<SignInResult> => {
     const foundUser = await usersRepository.findByEmailWithPassword(data.email);
 
     if (!foundUser) {
@@ -36,7 +46,7 @@ export const usersService = {
       token,
     };
   },
-  signUp: async (data: SignUpRequest): Promise<PublicUserRecord> => {
+  signUp: async (data: SignUpRequest): Promise<SignUpResult> => {
     const foundUser = await usersRepository.findByEmail(data.email);
 
     if (foundUser) {
