@@ -8,7 +8,7 @@ const publicUserSelect = {
   role: true,
 } satisfies Prisma.UserSelect;
 
-type PublicUser = Prisma.UserGetPayload<{
+type PublicUserRecord = Prisma.UserGetPayload<{
   select: typeof publicUserSelect;
 }>;
 
@@ -19,7 +19,7 @@ const authUserSelect = {
   role: true,
 } satisfies Prisma.UserSelect;
 
-type AuthUser = Prisma.UserGetPayload<{
+type AuthUserRecord = Prisma.UserGetPayload<{
   select: typeof authUserSelect;
 }>;
 
@@ -29,7 +29,7 @@ type CreateUserData = {
 };
 
 export const usersRepository = {
-  create: async (data: CreateUserData): Promise<PublicUser> => {
+  create: async (data: CreateUserData): Promise<PublicUserRecord> => {
     return prisma.user.create({
       data: {
         email: data.email,
@@ -38,13 +38,13 @@ export const usersRepository = {
       select: publicUserSelect,
     });
   },
-  findByEmail: async (email: string): Promise<null | PublicUser> => {
+  findByEmail: async (email: string): Promise<null | PublicUserRecord> => {
     return prisma.user.findUnique({
       select: publicUserSelect,
       where: { email },
     });
   },
-  findByEmailWithPassword: async (email: string): Promise<AuthUser | null> => {
+  findByEmailWithPassword: async (email: string): Promise<AuthUserRecord | null> => {
     return prisma.user.findUnique({
       select: authUserSelect,
       where: { email },
@@ -52,4 +52,4 @@ export const usersRepository = {
   },
 };
 
-export type { PublicUser };
+export type { PublicUserRecord };

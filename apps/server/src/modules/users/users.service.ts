@@ -5,7 +5,7 @@ import * as jose from 'jose';
 
 import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
-import { type PublicUser, usersRepository } from './users.repository.js';
+import { type PublicUserRecord, usersRepository } from './users.repository.js';
 
 export const usersService = {
   signIn: async (data: SignInRequest): Promise<{ token: string }> => {
@@ -36,7 +36,7 @@ export const usersService = {
       token,
     };
   },
-  signUp: async (data: SignUpRequest): Promise<PublicUser> => {
+  signUp: async (data: SignUpRequest): Promise<PublicUserRecord> => {
     const foundUser = await usersRepository.findByEmail(data.email);
 
     if (foundUser) {
