@@ -12,3 +12,6 @@ dist/
 
 # Prisma
 generated/
+
+# Husky
+.husky/_/
