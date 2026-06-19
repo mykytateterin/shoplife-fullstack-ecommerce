@@ -106,7 +106,22 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
           { argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_', varsIgnorePattern: '^_' },
         ],
         'no-console': 'warn',
+        'no-restricted-properties': [
+          'error',
+          {
+            message:
+              'Do not use process.env directly. Use env variables from the *.env.ts or env.ts file',
+            object: 'process',
+            property: 'env',
+          },
+        ],
         'no-undef': 'off',
+      },
+    },
+    {
+      files: ['**/src/config/env.ts', '**/prisma.env.ts'],
+      rules: {
+        'no-restricted-properties': 'off',
       },
     },
     {
