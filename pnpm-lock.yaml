@@ -194,9 +194,9 @@ importers:
       '@react-router/serve':
         specifier: catalog:client
         version: 7.15.1(react-router@7.15.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(typescript@6.0.3)
-      '@shoplife/shared':
+      '@shoplife/contracts':
         specifier: workspace:*
-        version: link:../../packages/shared
+        version: link:../../packages/contracts
       framer-motion:
         specifier: catalog:client
         version: 12.40.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -258,9 +258,9 @@ importers:
       '@prisma/client':
         specifier: catalog:server
         version: 7.8.0(prisma@7.8.0(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3))(typescript@6.0.3)
-      '@shoplife/shared':
+      '@shoplife/contracts':
         specifier: workspace:*
-        version: link:../../packages/shared
+        version: link:../../packages/contracts
       bcrypt:
         specifier: catalog:server
         version: 6.0.0
@@ -314,6 +314,19 @@ importers:
         specifier: catalog:server
         version: 4.22.4
 
+  packages/contracts:
+    dependencies:
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      '@shoplife/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@shoplife/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+
   packages/eslint-config:
     dependencies:
       '@eslint/js':
@@ -347,19 +360,6 @@ importers:
         specifier: catalog:eslint-config
         version: 8.61.0(eslint@10.5.0(jiti@2.7.0))(typescript@6.0.3)
     devDependencies:
-      '@shoplife/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-
-  packages/shared:
-    dependencies:
-      zod:
-        specifier: 'catalog:'
-        version: 4.4.3
-    devDependencies:
-      '@shoplife/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
       '@shoplife/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig

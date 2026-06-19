@@ -1,4 +1,4 @@
-import type { SignInRequest, SignUpRequest } from '@shoplife/shared';
+import type { SignInRequest, SignUpRequest } from '@shoplife/contracts';
 
 import bcrypt from 'bcrypt';
 import * as jose from 'jose';

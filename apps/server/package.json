@@ -3,7 +3,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "catalog:server",
     "@prisma/client": "catalog:server",
-    "@shoplife/shared": "workspace:*",
+    "@shoplife/contracts": "workspace:*",
     "bcrypt": "catalog:server",
     "cookie-parser": "catalog:server",
     "cors": "catalog:server",

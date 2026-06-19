@@ -1,4 +1,4 @@
-import { signInRequestSchema, signUpRequestSchema } from '@shoplife/shared';
+import { signInRequestSchema, signUpRequestSchema } from '@shoplife/contracts';
 import { Router } from 'express';
 
 import { validateRequest } from '../../core/middlewares/validate.middleware.js';

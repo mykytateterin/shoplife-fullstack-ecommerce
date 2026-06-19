@@ -1,4 +1,4 @@
-import type { SignInRequest, SignUpRequest } from '@shoplife/shared';
+import type { SignInRequest, SignUpRequest } from '@shoplife/contracts';
 import type { Response } from 'express';
 
 import type { TypedRequestBody } from '../../types/express.js';
