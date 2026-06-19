@@ -1,4 +1,4 @@
-import type { SignInInput, SignUpInput } from '@shoplife/shared';
+import type { SignInRequest, SignUpRequest } from '@shoplife/shared';
 
 import bcrypt from 'bcrypt';
 import * as jose from 'jose';
@@ -8,7 +8,7 @@ import { AppException } from '../../core/exceptions/AppException.js';
 import { type PublicUser, usersRepository } from './users.repository.js';
 
 export const usersService = {
-  signIn: async (data: SignInInput): Promise<{ token: string }> => {
+  signIn: async (data: SignInRequest): Promise<{ token: string }> => {
     const foundUser = await usersRepository.findByEmailWithPassword(data.email);
 
     if (!foundUser) {
@@ -36,7 +36,7 @@ export const usersService = {
       token,
     };
   },
-  signUp: async (data: SignUpInput): Promise<PublicUser> => {
+  signUp: async (data: SignUpRequest): Promise<PublicUser> => {
     const foundUser = await usersRepository.findByEmail(data.email);
 
     if (foundUser) {

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const signUpSchema = z.object({
+const signUpRequestSchema = z.object({
   email: z
     .email({
       message: 'Please enter a valid email address',
@@ -28,9 +28,9 @@ const signUpSchema = z.object({
     }),
 });
 
-type SignInInput = z.infer<typeof signInSchema>;
+type SignUpRequest = z.infer<typeof signUpRequestSchema>;
 
-const signInSchema = z.object({
+const signInRequestSchema = z.object({
   email: z
     .email({
       message: 'Please enter a valid email address',
@@ -49,7 +49,7 @@ const signInSchema = z.object({
     }),
 });
 
-type SignUpInput = z.infer<typeof signUpSchema>;
+type SignInRequest = z.infer<typeof signInRequestSchema>;
 
-export { signInSchema, signUpSchema };
-export type { SignInInput, SignUpInput };
+export { signInRequestSchema, signUpRequestSchema };
+export type { SignInRequest, SignUpRequest };

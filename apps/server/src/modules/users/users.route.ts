@@ -1,4 +1,4 @@
-import { signInSchema, signUpSchema } from '@shoplife/shared';
+import { signInRequestSchema, signUpRequestSchema } from '@shoplife/shared';
 import { Router } from 'express';
 
 import { validateRequest } from '../../core/middlewares/validate.middleware.js';
@@ -6,7 +6,7 @@ import { usersController } from './users.controller.js';
 
 const router = Router();
 
-router.post('/signup', validateRequest({ body: signUpSchema }), usersController.signUp);
-router.post('/signin', validateRequest({ body: signInSchema }), usersController.signIn);
+router.post('/signup', validateRequest({ body: signUpRequestSchema }), usersController.signUp);
+router.post('/signin', validateRequest({ body: signInRequestSchema }), usersController.signIn);
 
 export const usersRouter = router;

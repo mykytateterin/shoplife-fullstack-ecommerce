@@ -1,4 +1,4 @@
-import type { SignInInput, SignUpInput } from '@shoplife/shared';
+import type { SignInRequest, SignUpRequest } from '@shoplife/shared';
 import type { Response } from 'express';
 
 import type { TypedRequestBody } from '../../types/express.js';
@@ -9,7 +9,7 @@ import { usersService } from './users.service.js';
 const isProduction = env.NODE_ENV === 'production';
 
 export const usersController = {
-  signIn: async (req: TypedRequestBody<SignInInput>, res: Response): Promise<void> => {
+  signIn: async (req: TypedRequestBody<SignInRequest>, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
     const { token } = await usersService.signIn({ email, password });
@@ -25,7 +25,7 @@ export const usersController = {
       success: true,
     });
   },
-  signUp: async (req: TypedRequestBody<SignUpInput>, res: Response): Promise<void> => {
+  signUp: async (req: TypedRequestBody<SignUpRequest>, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
     const createdUser = await usersService.signUp({ email, password });
