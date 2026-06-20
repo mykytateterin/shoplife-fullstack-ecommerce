@@ -4,9 +4,8 @@ import type {
   SignUpRequest,
   SignUpResponse,
 } from '@shoplife/contracts';
-import type { Response } from 'express';
 
-import type { TypedRequestBody } from '../../types/express.js';
+import type { TypedRequestBody, TypedResponseBody } from '../../types/express.js';
 
 import { env } from '../../config/env.js';
 import { authService } from './auth.service.js';
@@ -14,7 +13,10 @@ import { authService } from './auth.service.js';
 const isProduction = env.NODE_ENV === 'production';
 
 export const authController = {
-  signIn: async (req: TypedRequestBody<SignInRequest>, res: Response): Promise<void> => {
+  signIn: async (
+    req: TypedRequestBody<SignInRequest>,
+    res: TypedResponseBody<SignInResponse>,
+  ): Promise<void> => {
     const { email, password } = req.body;
 
     const { token } = await authService.signIn({ email, password });
@@ -26,22 +28,21 @@ export const authController = {
       secure: isProduction,
     });
 
-    const response: SignInResponse = {
+    res.status(200).json({
       success: true,
-    };
-
-    res.status(200).json(response);
+    });
   },
-  signUp: async (req: TypedRequestBody<SignUpRequest>, res: Response): Promise<void> => {
+  signUp: async (
+    req: TypedRequestBody<SignUpRequest>,
+    res: TypedResponseBody<SignUpResponse>,
+  ): Promise<void> => {
     const { email, password } = req.body;
 
     const createdUser = await authService.signUp({ email, password });
 
-    const response: SignUpResponse = {
+    res.status(201).json({
       data: createdUser,
       success: true,
-    };
-
-    res.status(201).json(response);
+    });
   },
 };
