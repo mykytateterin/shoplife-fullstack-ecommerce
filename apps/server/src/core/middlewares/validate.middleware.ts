@@ -1,5 +1,7 @@
-import type { NextFunction, Request, Response } from 'express';
+import type { NextFunction } from 'express';
 import type { ZodType } from 'zod';
+
+import type { TypedRequest, TypedResponseBody } from '../../types/express.js';
 
 import { ZodException } from '../exceptions/ZodException.js';
 
@@ -10,7 +12,7 @@ type RequestSchema = {
 };
 
 export const validateRequest = (schema: RequestSchema) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
+  return (req: TypedRequest, _res: TypedResponseBody<unknown>, next: NextFunction): void => {
     if (schema.body) {
       const result = schema.body.safeParse(req.body);
       if (!result.success) {

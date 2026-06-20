@@ -1,11 +1,14 @@
-import type { NextFunction, Request, Response } from 'express';
+import type { ApiErrorResponse } from '@shoplife/contracts';
+import type { NextFunction } from 'express';
+
+import type { TypedRequest, TypedResponseBody } from '../../types/express.js';
 
 import { AppException } from '../exceptions/AppException.js';
 
 export const errorMiddleware = (
   error: Error,
-  req: Request,
-  res: Response,
+  req: TypedRequest,
+  res: TypedResponseBody<ApiErrorResponse>,
   _next: NextFunction,
 ): void => {
   console.error(`[Error] ${req.method} ${req.url}: ${error.message}`);
