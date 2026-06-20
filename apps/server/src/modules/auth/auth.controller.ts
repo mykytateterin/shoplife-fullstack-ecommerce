@@ -1,4 +1,9 @@
-import type { SignInRequest, SignUpRequest } from '@shoplife/contracts';
+import type {
+  SignInRequest,
+  SignInResponse,
+  SignUpRequest,
+  SignUpResponse,
+} from '@shoplife/contracts';
 import type { Response } from 'express';
 
 import type { TypedRequestBody } from '../../types/express.js';
@@ -21,18 +26,22 @@ export const authController = {
       secure: isProduction,
     });
 
-    res.status(200).json({
+    const response: SignInResponse = {
       success: true,
-    });
+    };
+
+    res.status(200).json(response);
   },
   signUp: async (req: TypedRequestBody<SignUpRequest>, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
     const createdUser = await authService.signUp({ email, password });
 
-    res.status(201).json({
+    const response: SignUpResponse = {
       data: createdUser,
       success: true,
-    });
+    };
+
+    res.status(201).json(response);
   },
 };

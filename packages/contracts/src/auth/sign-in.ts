@@ -21,5 +21,9 @@ const signInRequestSchema = z.object({
 
 type SignInRequest = z.infer<typeof signInRequestSchema>;
 
+type SignInResponse = {
+  success: true;
+};
+
 export { signInRequestSchema };
-export type { SignInRequest };
+export type { SignInRequest, SignInResponse };

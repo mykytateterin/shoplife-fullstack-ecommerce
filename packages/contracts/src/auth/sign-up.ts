@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import type { PublicUser } from '../users/public-user.js';
+
 const signUpRequestSchema = z.object({
   email: z
     .email({
@@ -30,5 +32,10 @@ const signUpRequestSchema = z.object({
 
 type SignUpRequest = z.infer<typeof signUpRequestSchema>;
 
+type SignUpResponse = {
+  data: PublicUser;
+  success: true;
+};
+
 export { signUpRequestSchema };
-export type { SignUpRequest };
+export type { SignUpRequest, SignUpResponse };
