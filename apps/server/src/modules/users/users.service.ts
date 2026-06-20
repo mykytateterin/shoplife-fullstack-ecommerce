@@ -5,6 +5,7 @@ import * as jose from 'jose';
 
 import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
+import { toContractUserRole } from './users.mapper.js';
 import { usersRepository } from './users.repository.js';
 
 type SignInResult = {
@@ -65,7 +66,7 @@ export const usersService = {
     return {
       email: user.email,
       id: user.id,
-      role: user.role,
+      role: toContractUserRole(user.role),
     };
   },
 };
