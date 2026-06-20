@@ -5,8 +5,8 @@ import * as jose from 'jose';
 
 import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
-import { toContractUserRole } from './users.mapper.js';
-import { usersRepository } from './users.repository.js';
+import { toContractUserRole } from '../users/users.mapper.js';
+import { usersRepository } from '../users/users.repository.js';
 
 type SignInResult = {
   token: string;
@@ -18,7 +18,7 @@ type SignUpResult = {
   role: UserRole;
 };
 
-export const usersService = {
+export const authService = {
   signIn: async (data: SignInRequest): Promise<SignInResult> => {
     const foundUser = await usersRepository.findByEmailWithPassword(data.email);
 

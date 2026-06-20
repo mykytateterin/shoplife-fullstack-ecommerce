@@ -4,7 +4,7 @@ import express from 'express';
 
 import { env } from './config/env.js';
 import { errorMiddleware } from './core/middlewares/error.middleware.js';
-import { usersRouter } from './modules/users/users.route.js';
+import { authRouter } from './modules/auth/auth.route.js';
 
 const app = express();
 const PORT = env.PORT;
@@ -18,7 +18,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api/users', usersRouter);
+app.use('/api/auth', authRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ message: 'Express v5 Backend is running!', status: 'ok' });

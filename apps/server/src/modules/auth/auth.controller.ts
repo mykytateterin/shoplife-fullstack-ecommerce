@@ -4,15 +4,15 @@ import type { Response } from 'express';
 import type { TypedRequestBody } from '../../types/express.js';
 
 import { env } from '../../config/env.js';
-import { usersService } from './users.service.js';
+import { authService } from './auth.service.js';
 
 const isProduction = env.NODE_ENV === 'production';
 
-export const usersController = {
+export const authController = {
   signIn: async (req: TypedRequestBody<SignInRequest>, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
-    const { token } = await usersService.signIn({ email, password });
+    const { token } = await authService.signIn({ email, password });
 
     res.cookie('token', token, {
       httpOnly: true,
@@ -28,7 +28,7 @@ export const usersController = {
   signUp: async (req: TypedRequestBody<SignUpRequest>, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
-    const createdUser = await usersService.signUp({ email, password });
+    const createdUser = await authService.signUp({ email, password });
 
     res.status(201).json({
       data: createdUser,
