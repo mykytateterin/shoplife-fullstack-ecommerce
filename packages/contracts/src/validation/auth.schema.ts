@@ -30,26 +30,5 @@ const signUpRequestSchema = z.object({
 
 type SignUpRequest = z.infer<typeof signUpRequestSchema>;
 
-const signInRequestSchema = z.object({
-  email: z
-    .email({
-      message: 'Please enter a valid email address',
-    })
-    .trim()
-    .max(255, {
-      message: 'Email cannot exceed 255 characters',
-    }),
-
-  password: z
-    .string({
-      message: 'Password is required',
-    })
-    .max(72, {
-      message: 'Password cannot exceed 72 characters',
-    }),
-});
-
-type SignInRequest = z.infer<typeof signInRequestSchema>;
-
-export { signInRequestSchema, signUpRequestSchema };
-export type { SignInRequest, SignUpRequest };
+export { signUpRequestSchema };
+export type { SignUpRequest };
