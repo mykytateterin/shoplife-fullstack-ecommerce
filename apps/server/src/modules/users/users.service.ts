@@ -1,11 +1,11 @@
-import type { SignInRequest, SignUpRequest } from '@shoplife/contracts';
+import type { SignInRequest, SignUpRequest, UserRole } from '@shoplife/contracts';
 
 import bcrypt from 'bcrypt';
 import * as jose from 'jose';
 
 import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
-import { type PublicUserRecord, usersRepository } from './users.repository.js';
+import { usersRepository } from './users.repository.js';
 
 type SignInResult = {
   token: string;
@@ -14,7 +14,7 @@ type SignInResult = {
 type SignUpResult = {
   email: string;
   id: number;
-  role: PublicUserRecord['role'];
+  role: UserRole;
 };
 
 export const usersService = {
