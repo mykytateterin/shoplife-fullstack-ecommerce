@@ -3,7 +3,7 @@
   "dependencies": {
     "@react-router/node": "catalog:client",
     "@react-router/serve": "catalog:client",
-    "@shoplife/shared": "workspace:*",
+    "@shoplife/contracts": "workspace:*",
     "framer-motion": "catalog:client",
     "js-cookie": "catalog:client",
     "normalize.css": "catalog:client",
