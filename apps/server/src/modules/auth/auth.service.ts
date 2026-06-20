@@ -1,4 +1,4 @@
-import type { SignInRequest, SignUpRequest, UserRole } from '@shoplife/contracts';
+import type { PublicUser, SignInRequest, SignUpRequest } from '@shoplife/contracts';
 
 import bcrypt from 'bcrypt';
 import * as jose from 'jose';
@@ -12,11 +12,7 @@ type SignInResult = {
   token: string;
 };
 
-type SignUpResult = {
-  email: string;
-  id: number;
-  role: UserRole;
-};
+type SignUpResult = PublicUser;
 
 export const authService = {
   signIn: async (data: SignInRequest): Promise<SignInResult> => {
