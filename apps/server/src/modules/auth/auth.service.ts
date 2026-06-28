@@ -1,21 +1,30 @@
-import type { PublicUser, SignInRequest, SignUpRequest } from '@shoplife/contracts';
-
 import bcrypt from 'bcrypt';
 import * as jose from 'jose';
 
+import type { DomainUser } from '../users/users.model.js';
+
 import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
-import { toContractUserRole } from '../users/users.mapper.js';
 import { usersRepository } from '../users/users.repository.js';
+
+type SignInData = {
+  email: string;
+  password: string;
+};
 
 type SignInResult = {
   token: string;
 };
 
-type SignUpResult = PublicUser;
+type SignUpData = {
+  email: string;
+  password: string;
+};
+
+type SignUpResult = DomainUser;
 
 export const authService = {
-  signIn: async (data: SignInRequest): Promise<SignInResult> => {
+  signIn: async (data: SignInData): Promise<SignInResult> => {
     const foundUser = await usersRepository.findByEmailWithPassword(data.email);
 
     if (!foundUser) {
@@ -43,7 +52,7 @@ export const authService = {
       token,
     };
   },
-  signUp: async (data: SignUpRequest): Promise<SignUpResult> => {
+  signUp: async (data: SignUpData): Promise<SignUpResult> => {
     const foundUser = await usersRepository.findByEmail(data.email);
 
     if (foundUser) {
@@ -59,10 +68,6 @@ export const authService = {
       passwordHash,
     });
 
-    return {
-      email: user.email,
-      id: user.id,
-      role: toContractUserRole(user.role),
-    };
+    return user;
   },
 };

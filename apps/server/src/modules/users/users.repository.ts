@@ -1,55 +1,61 @@
 import type { Prisma } from '../../infrastructure/database/prisma/generated/client.js';
+import type { DomainUser, DomainUserWithPassword } from './users.model.js';
 
 import { prisma } from '../../infrastructure/database/prisma/prisma.client.js';
+import { toUser, toUserWithPassword } from './users.repository.mapper.js';
 
-const publicUserSelect = {
+const prismaUserSelect = {
   email: true,
   id: true,
   role: true,
 } satisfies Prisma.UserSelect;
 
-type PublicUserRecord = Prisma.UserGetPayload<{
-  select: typeof publicUserSelect;
+type PrismaUser = Prisma.UserGetPayload<{
+  select: typeof prismaUserSelect;
 }>;
 
-const authUserSelect = {
-  email: true,
-  id: true,
+const prismaUserWithPasswordSelect = {
+  ...prismaUserSelect,
   passwordHash: true,
-  role: true,
 } satisfies Prisma.UserSelect;
-
-type AuthUserRecord = Prisma.UserGetPayload<{
-  select: typeof authUserSelect;
-}>;
 
 type CreateUserData = {
   email: string;
   passwordHash: string;
 };
 
+type PrismaUserWithPassword = Prisma.UserGetPayload<{
+  select: typeof prismaUserWithPasswordSelect;
+}>;
+
 export const usersRepository = {
-  create: async (data: CreateUserData): Promise<PublicUserRecord> => {
-    return prisma.user.create({
+  create: async (data: CreateUserData): Promise<DomainUser> => {
+    const createdUser = await prisma.user.create({
       data: {
         email: data.email,
         passwordHash: data.passwordHash,
       },
-      select: publicUserSelect,
+      select: prismaUserSelect,
     });
+
+    return toUser(createdUser);
   },
-  findByEmail: async (email: string): Promise<null | PublicUserRecord> => {
-    return prisma.user.findUnique({
-      select: publicUserSelect,
+  findByEmail: async (email: string): Promise<DomainUser | null> => {
+    const foundUser = await prisma.user.findUnique({
+      select: prismaUserSelect,
       where: { email },
     });
+
+    return foundUser ? toUser(foundUser) : null;
   },
-  findByEmailWithPassword: async (email: string): Promise<AuthUserRecord | null> => {
-    return prisma.user.findUnique({
-      select: authUserSelect,
+  findByEmailWithPassword: async (email: string): Promise<DomainUserWithPassword | null> => {
+    const foundUser = await prisma.user.findUnique({
+      select: prismaUserWithPasswordSelect,
       where: { email },
     });
+
+    return foundUser ? toUserWithPassword(foundUser) : null;
   },
 };
 
-export type { PublicUserRecord };
+export type { PrismaUser, PrismaUserWithPassword };

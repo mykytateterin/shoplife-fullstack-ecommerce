@@ -8,6 +8,7 @@ import type {
 import type { TypedRequestBody, TypedResponseBody } from '../../types/express.js';
 
 import { env } from '../../config/env.js';
+import { toPublicUser } from '../users/users.api.mapper.js';
 import { authService } from './auth.service.js';
 
 const isProduction = env.NODE_ENV === 'production';
@@ -41,7 +42,7 @@ export const authController = {
     const createdUser = await authService.signUp({ email, password });
 
     res.status(201).json({
-      data: createdUser,
+      data: toPublicUser(createdUser),
       success: true,
     });
   },
