@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import type { PublicUser } from '../users/public-user.js';
+import type { ContractUser } from '../users/public-user.js';
 
 const signUpRequestSchema = z.object({
   email: z
@@ -33,7 +33,7 @@ const signUpRequestSchema = z.object({
 type SignUpRequest = z.infer<typeof signUpRequestSchema>;
 
 type SignUpResponse = {
-  data: PublicUser;
+  data: ContractUser;
   success: true;
 };
 

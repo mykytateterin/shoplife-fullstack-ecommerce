@@ -1,7 +1,9 @@
-import type { UserRole } from './user-role.js';
+import type { ContractUserRole } from './user-role.js';
 
-export type PublicUser = {
+type ContractUser = {
   email: string;
   id: number;
-  role: UserRole;
+  role: ContractUserRole;
 };
+
+export type { ContractUser };

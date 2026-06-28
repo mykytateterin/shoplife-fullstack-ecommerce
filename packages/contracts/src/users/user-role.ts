@@ -1,7 +1,9 @@
-export const UserRole = {
+const ContractUserRole = {
   ADMIN: 'ADMIN',
   MANAGER: 'MANAGER',
   USER: 'USER',
 } as const;
 
-export type UserRole = (typeof UserRole)[keyof typeof UserRole];
+type ContractUserRole = (typeof ContractUserRole)[keyof typeof ContractUserRole];
+
+export { ContractUserRole };
