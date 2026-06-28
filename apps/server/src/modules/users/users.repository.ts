@@ -15,7 +15,7 @@ type PublicUserRecord = Prisma.UserGetPayload<{
 const authUserSelect = {
   email: true,
   id: true,
-  password: true,
+  passwordHash: true,
   role: true,
 } satisfies Prisma.UserSelect;
 
@@ -33,7 +33,7 @@ export const usersRepository = {
     return prisma.user.create({
       data: {
         email: data.email,
-        password: data.passwordHash,
+        passwordHash: data.passwordHash,
       },
       select: publicUserSelect,
     });

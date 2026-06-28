@@ -22,7 +22,7 @@ export const authService = {
       throw new AppException(401, 'Invalid email or password');
     }
 
-    const isSamePassword = await bcrypt.compare(data.password, foundUser.password);
+    const isSamePassword = await bcrypt.compare(data.password, foundUser.passwordHash);
 
     if (!isSamePassword) {
       throw new AppException(401, 'Invalid email or password');
