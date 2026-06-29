@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import * as jose from 'jose';
 
 import type { DomainUser } from '../users/users.model.js';
@@ -6,6 +5,7 @@ import type { DomainUser } from '../users/users.model.js';
 import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
 import { usersRepository } from '../users/users.repository.js';
+import { bcryptPasswordHasher } from './services/bcrypt-password-hasher.service.js';
 
 type SignInData = {
   email: string;
@@ -31,7 +31,10 @@ export const authService = {
       throw new AppException(401, 'Invalid email or password');
     }
 
-    const isSamePassword = await bcrypt.compare(data.password, foundUser.passwordHash);
+    const isSamePassword = await bcryptPasswordHasher.compare({
+      password: data.password,
+      passwordHash: foundUser.passwordHash,
+    });
 
     if (!isSamePassword) {
       throw new AppException(401, 'Invalid email or password');
@@ -59,9 +62,7 @@ export const authService = {
       throw new AppException(409, 'Email is already in use');
     }
 
-    const saltRounds = env.SALT_ROUNDS;
-
-    const passwordHash = await bcrypt.hash(data.password, saltRounds);
+    const passwordHash = await bcryptPasswordHasher.hash(data.password);
 
     const user = await usersRepository.create({
       email: data.email,
