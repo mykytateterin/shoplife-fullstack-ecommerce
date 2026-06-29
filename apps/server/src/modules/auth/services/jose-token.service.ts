@@ -1,6 +1,6 @@
 import * as jose from 'jose';
 
-import type { TokenService } from '../ports/token-service.port.js';
+import type { TokenService } from '../ports/token.service.port.js';
 
 import { env } from '../../../config/env.js';
 

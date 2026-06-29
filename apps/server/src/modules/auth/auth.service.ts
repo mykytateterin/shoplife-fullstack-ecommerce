@@ -2,7 +2,7 @@ import type { DomainUser } from '../users/users.model.js';
 
 import { AppException } from '../../core/exceptions/AppException.js';
 import { usersRepository } from '../users/users.repository.js';
-import { bcryptPasswordHasher } from './services/bcrypt-password-hasher.service.js';
+import { bcryptPasswordService } from './services/bcrypt-password.service.js';
 import { joseTokenService } from './services/jose-token.service.js';
 
 type SignInData = {
@@ -29,7 +29,7 @@ export const authService = {
       throw new AppException(401, 'Invalid email or password');
     }
 
-    const isSamePassword = await bcryptPasswordHasher.compare({
+    const isSamePassword = await bcryptPasswordService.compare({
       password: data.password,
       passwordHash: foundUser.passwordHash,
     });
@@ -51,7 +51,7 @@ export const authService = {
       throw new AppException(409, 'Email is already in use');
     }
 
-    const passwordHash = await bcryptPasswordHasher.hash(data.password);
+    const passwordHash = await bcryptPasswordService.hash(data.password);
 
     const user = await usersRepository.create({
       email: data.email,

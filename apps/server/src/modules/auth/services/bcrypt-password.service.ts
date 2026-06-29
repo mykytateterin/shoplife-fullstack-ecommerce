@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
 
-import type { PasswordHasher } from '../ports/password-hasher.port.js';
+import type { PasswordService } from '../ports/password.service.port.js';
 
 import { env } from '../../../config/env.js';
 
-const bcryptPasswordHasher: PasswordHasher = {
+const bcryptPasswordService: PasswordService = {
   compare: async ({ password, passwordHash }) => {
     return bcrypt.compare(password, passwordHash);
   },
@@ -15,4 +15,4 @@ const bcryptPasswordHasher: PasswordHasher = {
   },
 };
 
-export { bcryptPasswordHasher };
+export { bcryptPasswordService };

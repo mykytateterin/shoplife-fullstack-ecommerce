@@ -3,9 +3,9 @@ type CompareData = {
   passwordHash: string;
 };
 
-type PasswordHasher = {
+type PasswordService = {
   compare(data: CompareData): Promise<boolean>;
   hash(password: string): Promise<string>;
 };
 
-export type { PasswordHasher };
+export type { PasswordService };
