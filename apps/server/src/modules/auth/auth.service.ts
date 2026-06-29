@@ -1,11 +1,9 @@
-import * as jose from 'jose';
-
 import type { DomainUser } from '../users/users.model.js';
 
-import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
 import { usersRepository } from '../users/users.repository.js';
 import { bcryptPasswordHasher } from './services/bcrypt-password-hasher.service.js';
+import { joseTokenService } from './services/jose-token.service.js';
 
 type SignInData = {
   email: string;
@@ -40,16 +38,11 @@ export const authService = {
       throw new AppException(401, 'Invalid email or password');
     }
 
-    const jwtSecret = new TextEncoder().encode(env.JWT_SECRET);
-    const token = await new jose.SignJWT({
+    const token = await joseTokenService.signAuthToken({
       email: foundUser.email,
+      id: foundUser.id,
       role: foundUser.role,
-    })
-      .setProtectedHeader({ alg: 'HS256' })
-      .setSubject(String(foundUser.id))
-      .setIssuedAt()
-      .setExpirationTime('24h')
-      .sign(jwtSecret);
+    });
 
     return {
       token,
