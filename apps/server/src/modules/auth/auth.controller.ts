@@ -9,7 +9,7 @@ import type { TypedRequestBody, TypedResponseBody } from '../../types/express.js
 
 import { env } from '../../config/env.js';
 import { toPublicUser } from '../users/users.api.mapper.js';
-import { authService } from './auth.service.js';
+import { signInUseCase, signUpUseCase } from './auth.module.js';
 
 const isProduction = env.NODE_ENV === 'production';
 
@@ -20,7 +20,7 @@ export const authController = {
   ): Promise<void> => {
     const { email, password } = req.body;
 
-    const { token } = await authService.signIn({ email, password });
+    const { token } = await signInUseCase({ email, password });
 
     res.cookie('token', token, {
       httpOnly: true,
@@ -39,7 +39,7 @@ export const authController = {
   ): Promise<void> => {
     const { email, password } = req.body;
 
-    const createdUser = await authService.signUp({ email, password });
+    const createdUser = await signUpUseCase({ email, password });
 
     res.status(201).json({
       data: toPublicUser(createdUser),
