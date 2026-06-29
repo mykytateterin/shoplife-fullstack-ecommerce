@@ -5,15 +5,12 @@ import type { TokenService } from '../ports/token-service.port.js';
 import { env } from '../../../config/env.js';
 
 const joseTokenService: TokenService = {
-  signAuthToken: async ({ email, id, role }) => {
+  signAuthToken: async (userId) => {
     const jwtSecret = new TextEncoder().encode(env.JWT_SECRET);
 
-    return new jose.SignJWT({
-      email,
-      role,
-    })
+    return new jose.SignJWT()
       .setProtectedHeader({ alg: 'HS256' })
-      .setSubject(String(id))
+      .setSubject(String(userId))
       .setIssuedAt()
       .setExpirationTime('24h')
       .sign(jwtSecret);

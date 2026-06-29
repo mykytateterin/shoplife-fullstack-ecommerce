@@ -38,11 +38,7 @@ export const authService = {
       throw new AppException(401, 'Invalid email or password');
     }
 
-    const token = await joseTokenService.signAuthToken({
-      email: foundUser.email,
-      id: foundUser.id,
-      role: foundUser.role,
-    });
+    const token = await joseTokenService.signAuthToken(foundUser.id);
 
     return {
       token,
