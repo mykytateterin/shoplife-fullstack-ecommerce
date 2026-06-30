@@ -12,7 +12,7 @@ const toContractUserRole = (role: DomainUserRole): ContractUserRole => {
   return domainUserRoleToContractUserRole[role];
 };
 
-const toPublicUser = (user: DomainUser): ContractUser => {
+const toContractUser = (user: DomainUser): ContractUser => {
   return {
     email: user.email,
     id: user.id,
@@ -20,4 +20,4 @@ const toPublicUser = (user: DomainUser): ContractUser => {
   };
 };
 
-export { toPublicUser };
+export { toContractUser };

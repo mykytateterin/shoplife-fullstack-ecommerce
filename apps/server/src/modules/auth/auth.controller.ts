@@ -14,7 +14,7 @@ import type {
 
 import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
-import { toPublicUser } from '../users/users.api.mapper.js';
+import { toContractUser } from '../users/users.api.mapper.js';
 import { getCurrentUserUseCase, signInUseCase, signUpUseCase } from './auth.module.js';
 
 const isProduction = env.NODE_ENV === 'production';
@@ -37,7 +37,7 @@ export const authController = {
     const userData = await getCurrentUserUseCase({ token });
 
     res.status(200).json({
-      data: toPublicUser(userData),
+      data: toContractUser(userData),
       success: true,
     });
   },
@@ -69,7 +69,7 @@ export const authController = {
     const createdUser = await signUpUseCase({ email, password });
 
     res.status(201).json({
-      data: toPublicUser(createdUser),
+      data: toContractUser(createdUser),
       success: true,
     });
   },

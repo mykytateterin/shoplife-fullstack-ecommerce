@@ -1,4 +1,4 @@
-import type { ContractUser } from '../users/public-user.js';
+import type { ContractUser } from '../users/user.js';
 
 type GetCurrentUserResponse = {
   data: ContractUser;

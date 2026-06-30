@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import type { ContractUser } from '../users/public-user.js';
+import type { ContractUser } from '../users/user.js';
 
 const signUpRequestSchema = z.object({
   email: z
