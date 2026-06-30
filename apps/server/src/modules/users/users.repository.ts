@@ -56,6 +56,14 @@ export const usersRepository = {
 
     return foundUser ? toUserWithPassword(foundUser) : null;
   },
+  findById: async (id: number): Promise<DomainUser | null> => {
+    const foundUser = await prisma.user.findUnique({
+      select: prismaUserSelect,
+      where: { id },
+    });
+
+    return foundUser ? toUser(foundUser) : null;
+  },
 };
 
 export type { PrismaUser, PrismaUserWithPassword };
