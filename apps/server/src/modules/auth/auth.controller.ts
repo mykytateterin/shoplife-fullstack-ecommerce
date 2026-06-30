@@ -23,7 +23,7 @@ type AuthCookies = {
   token?: string;
 };
 
-export const authController = {
+const authController = {
   getCurrentUser: async (
     req: TypedRequestCookies<AuthCookies>,
     res: TypedResponseBody<GetCurrentUserResponse>,
@@ -74,3 +74,5 @@ export const authController = {
     });
   },
 };
+
+export { authController };

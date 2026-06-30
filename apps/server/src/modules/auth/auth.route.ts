@@ -4,11 +4,11 @@ import { Router } from 'express';
 import { validateRequest } from '../../core/middlewares/validate.middleware.js';
 import { authController } from './auth.controller.js';
 
-const router = Router();
+const authRouter = Router();
 
-router.get('/me', authController.getCurrentUser);
+authRouter.get('/me', authController.getCurrentUser);
 
-router.post('/sign-up', validateRequest({ body: signUpRequestSchema }), authController.signUp);
-router.post('/sign-in', validateRequest({ body: signInRequestSchema }), authController.signIn);
+authRouter.post('/sign-up', validateRequest({ body: signUpRequestSchema }), authController.signUp);
+authRouter.post('/sign-in', validateRequest({ body: signInRequestSchema }), authController.signIn);
 
-export const authRouter = router;
+export { authRouter };

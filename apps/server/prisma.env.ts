@@ -13,4 +13,6 @@ if (!_prismaEnv.success) {
   process.exit(1);
 }
 
-export const prismaEnv = _prismaEnv.data;
+const prismaEnv = _prismaEnv.data;
+
+export { prismaEnv };

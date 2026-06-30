@@ -5,7 +5,7 @@ import type { TypedRequest, TypedResponseBody } from '../../types/express.js';
 
 import { AppException } from '../exceptions/AppException.js';
 
-export const errorMiddleware = (
+const errorMiddleware = (
   error: Error,
   req: TypedRequest,
   res: TypedResponseBody<ApiErrorResponse>,
@@ -27,3 +27,5 @@ export const errorMiddleware = (
     success: false,
   });
 };
+
+export { errorMiddleware };

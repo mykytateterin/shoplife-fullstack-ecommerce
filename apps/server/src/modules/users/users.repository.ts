@@ -28,7 +28,7 @@ type PrismaUserWithPassword = Prisma.UserGetPayload<{
   select: typeof prismaUserWithPasswordSelect;
 }>;
 
-export const usersRepository = {
+const usersRepository = {
   create: async (data: CreateUserData): Promise<DomainUser> => {
     const createdUser = await prisma.user.create({
       data: {
@@ -66,4 +66,5 @@ export const usersRepository = {
   },
 };
 
+export { usersRepository };
 export type { PrismaUser, PrismaUserWithPassword };

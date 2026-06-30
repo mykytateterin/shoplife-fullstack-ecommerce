@@ -10,7 +10,9 @@ const pool = new pg.Pool({
 
 const adapter = new PrismaPg(pool);
 
-export const prisma = new PrismaClient({
+const prisma = new PrismaClient({
   adapter,
   log: env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
 });
+
+export { prisma };

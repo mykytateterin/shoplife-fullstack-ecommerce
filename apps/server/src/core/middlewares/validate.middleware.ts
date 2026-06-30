@@ -11,7 +11,7 @@ type RequestSchema = {
   query?: ZodType;
 };
 
-export const validateRequest = (schema: RequestSchema) => {
+const validateRequest = (schema: RequestSchema) => {
   return (req: TypedRequest, _res: TypedResponseBody<unknown>, next: NextFunction): void => {
     if (schema.body) {
       const result = schema.body.safeParse(req.body);
@@ -41,3 +41,5 @@ export const validateRequest = (schema: RequestSchema) => {
     next();
   };
 };
+
+export { validateRequest };

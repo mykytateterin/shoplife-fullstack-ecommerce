@@ -1,4 +1,4 @@
-export class AppException extends Error {
+class AppException extends Error {
   constructor(
     readonly statusCode: number,
     message: string,
@@ -11,3 +11,5 @@ export class AppException extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 }
+
+export { AppException };
