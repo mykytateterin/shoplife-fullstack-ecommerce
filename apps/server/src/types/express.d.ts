@@ -1,7 +1,13 @@
 import type { Request, Response } from 'express';
 
 type TypedRequest = Request;
-type TypedRequestBody<T> = Request<unknown, unknown, T>;
-type TypedResponseBody<T> = Response<T>;
 
-export type { TypedRequest, TypedRequestBody, TypedResponseBody };
+type TypedRequestBody<TBody> = Request<unknown, unknown, TBody>;
+
+type TypedRequestCookies<TCookies> = Omit<Request, 'cookies'> & {
+  cookies: TCookies;
+};
+
+type TypedResponseBody<TBody> = Response<TBody>;
+
+export type { TypedRequest, TypedRequestBody, TypedRequestCookies, TypedResponseBody };

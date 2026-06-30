@@ -1,19 +1,46 @@
 import type {
+  GetCurrentUserResponse,
   SignInRequest,
   SignInResponse,
   SignUpRequest,
   SignUpResponse,
 } from '@shoplife/contracts';
 
-import type { TypedRequestBody, TypedResponseBody } from '../../types/express.js';
+import type {
+  TypedRequestBody,
+  TypedRequestCookies,
+  TypedResponseBody,
+} from '../../types/express.js';
 
 import { env } from '../../config/env.js';
+import { AppException } from '../../core/exceptions/AppException.js';
 import { toPublicUser } from '../users/users.api.mapper.js';
-import { signInUseCase, signUpUseCase } from './auth.module.js';
+import { getCurrentUserUseCase, signInUseCase, signUpUseCase } from './auth.module.js';
 
 const isProduction = env.NODE_ENV === 'production';
 
+type AuthCookies = {
+  token?: string;
+};
+
 export const authController = {
+  getCurrentUser: async (
+    req: TypedRequestCookies<AuthCookies>,
+    res: TypedResponseBody<GetCurrentUserResponse>,
+  ): Promise<void> => {
+    const { token } = req.cookies;
+
+    if (!token) {
+      throw new AppException(401, 'Unauthorized');
+    }
+
+    const userData = await getCurrentUserUseCase({ token });
+
+    res.status(200).json({
+      data: toPublicUser(userData),
+      success: true,
+    });
+  },
   signIn: async (
     req: TypedRequestBody<SignInRequest>,
     res: TypedResponseBody<SignInResponse>,

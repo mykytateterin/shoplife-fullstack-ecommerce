@@ -6,6 +6,8 @@ import { authController } from './auth.controller.js';
 
 const router = Router();
 
+router.get('/me', authController.getCurrentUser);
+
 router.post('/sign-up', validateRequest({ body: signUpRequestSchema }), authController.signUp);
 router.post('/sign-in', validateRequest({ body: signInRequestSchema }), authController.signIn);
 
