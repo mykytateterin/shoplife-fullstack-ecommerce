@@ -8,7 +8,8 @@
     "husky": "catalog:",
     "lint-staged": "catalog:",
     "prettier": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vite": "catalog:"
   },
   "lint-staged": {
     "*.{yaml,yml,json,jsonc,json5,js,mjs,cjs,ts,tsx,mts,cts}": ["eslint --fix", "prettier --write"]

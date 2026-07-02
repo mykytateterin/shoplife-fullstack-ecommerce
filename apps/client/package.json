@@ -21,8 +21,7 @@
     "@types/js-cookie": "catalog:client",
     "@types/react": "catalog:client",
     "@types/react-dom": "catalog:client",
-    "sass-embedded": "catalog:client",
-    "vite": "catalog:client"
+    "sass-embedded": "catalog:client"
   },
   "name": "@shoplife/client",
   "private": true,
