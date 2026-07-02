@@ -19,7 +19,7 @@ const issuesToDetails = (issues: z.core.$ZodIssueBase[]): ValidationErrorDetail[
   }));
 };
 
-const validateRequest = (schema: RequestSchema) => {
+const createValidationMiddleware = (schema: RequestSchema) => {
   return (req: TypedRequest, _res: TypedResponseBody<unknown>, next: NextFunction): void => {
     if (schema.body) {
       const result = schema.body.safeParse(req.body);
@@ -59,4 +59,4 @@ const validateRequest = (schema: RequestSchema) => {
   };
 };
 
-export { validateRequest };
+export { createValidationMiddleware };
