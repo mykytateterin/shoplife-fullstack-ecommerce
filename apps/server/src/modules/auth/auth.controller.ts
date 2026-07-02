@@ -2,11 +2,13 @@ import type {
   GetCurrentUserResponse,
   SignInRequest,
   SignInResponse,
+  SignOutResponse,
   SignUpRequest,
   SignUpResponse,
 } from '@shoplife/contracts';
 
 import type {
+  TypedRequest,
   TypedRequestBody,
   TypedRequestCookies,
   TypedResponseBody,
@@ -52,6 +54,17 @@ const authController = {
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
+      sameSite: 'strict',
+      secure: isProduction,
+    });
+
+    res.status(200).json({
+      success: true,
+    });
+  },
+  signOut: (_req: TypedRequest, res: TypedResponseBody<SignOutResponse>): void => {
+    res.clearCookie('token', {
+      httpOnly: true,
       sameSite: 'strict',
       secure: isProduction,
     });

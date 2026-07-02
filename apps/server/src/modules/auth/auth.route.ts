@@ -13,6 +13,7 @@ authRouter.post(
   createValidationMiddleware({ body: signUpRequestSchema }),
   authController.signUp,
 );
+authRouter.post('/sign-out', authController.signOut);
 authRouter.post(
   '/sign-in',
   createValidationMiddleware({ body: signInRequestSchema }),
