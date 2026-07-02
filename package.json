@@ -21,6 +21,7 @@
     "dev:server": "pnpm --filter @shoplife/server dev",
     "format": "prettier --write .",
     "prepare": "husky",
+    "test:server": "pnpm --filter @shoplife/server test",
     "typecheck:backend": "pnpm typecheck:root && pnpm --filter @shoplife/tsconfig typecheck && pnpm --filter @shoplife/eslint-config typecheck && pnpm --filter @shoplife/contracts typecheck && pnpm --filter @shoplife/server typecheck",
     "typecheck:root": "tsc"
   },

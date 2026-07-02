@@ -22,7 +22,8 @@
     "@types/pg": "catalog:server",
     "dotenv": "catalog:server",
     "prisma": "catalog:server",
-    "tsx": "catalog:server"
+    "tsx": "catalog:server",
+    "vitest": "catalog:server"
   },
   "name": "@shoplife/server",
   "private": true,
@@ -32,6 +33,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "start": "node dist/index.js",
+    "test": "vitest run",
     "typecheck": "tsc"
   },
   "type": "module"
