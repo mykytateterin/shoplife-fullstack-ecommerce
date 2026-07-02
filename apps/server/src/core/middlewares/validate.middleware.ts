@@ -1,22 +1,33 @@
+import type { ValidationErrorDetail } from '@shoplife/contracts';
 import type { NextFunction } from 'express';
-import type { ZodType } from 'zod';
+import type * as z from 'zod';
 
 import type { TypedRequest, TypedResponseBody } from '../../types/express.js';
 
-import { ZodException } from '../exceptions/ZodException.js';
+import { ValidationException } from '../exceptions/ValidationException.js';
 
 type RequestSchema = {
-  body?: ZodType;
-  params?: ZodType;
-  query?: ZodType;
+  body?: z.ZodType;
+  params?: z.ZodType;
+  query?: z.ZodType;
+};
+
+const issuesToDetails = (issues: z.core.$ZodIssueBase[]): ValidationErrorDetail[] => {
+  return issues.map((issue) => ({
+    field: issue.path.join('.'),
+    message: issue.message,
+  }));
 };
 
 const validateRequest = (schema: RequestSchema) => {
   return (req: TypedRequest, _res: TypedResponseBody<unknown>, next: NextFunction): void => {
     if (schema.body) {
       const result = schema.body.safeParse(req.body);
+
       if (!result.success) {
-        next(new ZodException(result.error.issues));
+        const details = issuesToDetails(result.error.issues);
+
+        next(new ValidationException(details));
         return;
       }
       req.body = result.data;
@@ -24,16 +35,22 @@ const validateRequest = (schema: RequestSchema) => {
 
     if (schema.query) {
       const result = schema.query.safeParse(req.query);
+
       if (!result.success) {
-        next(new ZodException(result.error.issues));
+        const details = issuesToDetails(result.error.issues);
+
+        next(new ValidationException(details));
         return;
       }
     }
 
     if (schema.params) {
       const result = schema.params.safeParse(req.params);
+
       if (!result.success) {
-        next(new ZodException(result.error.issues));
+        const details = issuesToDetails(result.error.issues);
+
+        next(new ValidationException(details));
         return;
       }
     }
