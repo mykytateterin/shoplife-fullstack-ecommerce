@@ -3,14 +3,14 @@ import { describe, expect, it, vi } from 'vitest';
 import { DomainUserRole } from '../../users/users.model.js';
 import { makeSignUpUseCase } from './sign-up.use-case.js';
 
-const usersRepository = {
-  create: vi.fn(),
-  findByEmail: vi.fn(),
-};
-
 const passwordService = {
   compare: vi.fn(),
   hash: vi.fn(),
+};
+
+const usersRepository = {
+  create: vi.fn(),
+  findByEmail: vi.fn(),
 };
 
 const signUpUseCase = makeSignUpUseCase({
@@ -18,7 +18,20 @@ const signUpUseCase = makeSignUpUseCase({
   usersRepository,
 });
 
+const signUpData = {
+  email: 'user@example.com',
+  password: 'input-password',
+};
+
 const foundUser = {
+  email: 'user@example.com',
+  id: 1,
+  role: DomainUserRole.USER,
+};
+
+const hashedPassword = 'hashed-password';
+
+const createdUser = {
   email: 'user@example.com',
   id: 1,
   role: DomainUserRole.USER,
@@ -28,12 +41,7 @@ describe('makeSignUpUseCase', () => {
   it('throws 409 when the email is already in use', async () => {
     usersRepository.findByEmail.mockResolvedValue(foundUser);
 
-    await expect(
-      signUpUseCase({
-        email: 'user@example.com',
-        password: 'input-password',
-      }),
-    ).rejects.toMatchObject({
+    await expect(signUpUseCase(signUpData)).rejects.toMatchObject({
       message: 'Email is already in use',
       statusCode: 409,
     });
@@ -42,12 +50,7 @@ describe('makeSignUpUseCase', () => {
   it('does not hash the password when the email is already in use', async () => {
     usersRepository.findByEmail.mockResolvedValue(foundUser);
 
-    await expect(
-      signUpUseCase({
-        email: 'user@example.com',
-        password: 'input-password',
-      }),
-    ).rejects.toMatchObject({
+    await expect(signUpUseCase(signUpData)).rejects.toMatchObject({
       message: 'Email is already in use',
       statusCode: 409,
     });
@@ -58,12 +61,7 @@ describe('makeSignUpUseCase', () => {
   it('does not create a user when the email is already in use', async () => {
     usersRepository.findByEmail.mockResolvedValue(foundUser);
 
-    await expect(
-      signUpUseCase({
-        email: 'user@example.com',
-        password: 'input-password',
-      }),
-    ).rejects.toMatchObject({
+    await expect(signUpUseCase(signUpData)).rejects.toMatchObject({
       message: 'Email is already in use',
       statusCode: 409,
     });
@@ -73,59 +71,32 @@ describe('makeSignUpUseCase', () => {
 
   it('returns the created user when the email is available', async () => {
     usersRepository.findByEmail.mockResolvedValue(null);
-    passwordService.hash.mockResolvedValue('hashed-password');
-    usersRepository.create.mockResolvedValue({
-      email: 'user@example.com',
-      id: 1,
-      role: DomainUserRole.USER,
-    });
+    passwordService.hash.mockResolvedValue(hashedPassword);
+    usersRepository.create.mockResolvedValue(createdUser);
 
-    await expect(
-      signUpUseCase({
-        email: 'user@example.com',
-        password: 'input-password',
-      }),
-    ).resolves.toEqual({
-      email: 'user@example.com',
-      id: 1,
-      role: DomainUserRole.USER,
-    });
+    await expect(signUpUseCase(signUpData)).resolves.toEqual(createdUser);
   });
 
   it('hashes the input password when the email is available', async () => {
     usersRepository.findByEmail.mockResolvedValue(null);
-    passwordService.hash.mockResolvedValue('hashed-password');
-    usersRepository.create.mockResolvedValue({
-      email: 'user@example.com',
-      id: 1,
-      role: DomainUserRole.USER,
-    });
+    passwordService.hash.mockResolvedValue(hashedPassword);
+    usersRepository.create.mockResolvedValue(createdUser);
 
-    await signUpUseCase({
-      email: 'user@example.com',
-      password: 'input-password',
-    });
+    await signUpUseCase(signUpData);
 
-    expect(passwordService.hash).toHaveBeenCalledWith('input-password');
+    expect(passwordService.hash).toHaveBeenCalledWith(signUpData.password);
   });
 
   it('creates a user with the email and hashed password', async () => {
     usersRepository.findByEmail.mockResolvedValue(null);
-    passwordService.hash.mockResolvedValue('hashed-password');
-    usersRepository.create.mockResolvedValue({
-      email: 'user@example.com',
-      id: 1,
-      role: DomainUserRole.USER,
-    });
+    passwordService.hash.mockResolvedValue(hashedPassword);
+    usersRepository.create.mockResolvedValue(createdUser);
 
-    await signUpUseCase({
-      email: 'user@example.com',
-      password: 'input-password',
-    });
+    await signUpUseCase(signUpData);
 
     expect(usersRepository.create).toHaveBeenCalledWith({
-      email: 'user@example.com',
-      passwordHash: 'hashed-password',
+      email: signUpData.email,
+      passwordHash: hashedPassword,
     });
   });
 });
