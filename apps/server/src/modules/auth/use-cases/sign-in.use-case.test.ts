@@ -60,6 +60,39 @@ describe('makeSignInUseCase', () => {
     });
   });
 
+  it('does not compare passwords when the user does not exist', async () => {
+    usersRepository.findByEmailWithPassword.mockResolvedValue(null);
+
+    await expect(
+      signInUseCase({
+        email: 'user@example.com',
+        password: 'input-password',
+      }),
+    ).rejects.toMatchObject({
+      message: 'Invalid email or password',
+      statusCode: 401,
+    });
+
+    expect(passwordService.compare).not.toHaveBeenCalled();
+  });
+
+  it('does not sign an auth token when the password is incorrect', async () => {
+    usersRepository.findByEmailWithPassword.mockResolvedValue(foundUser);
+    passwordService.compare.mockResolvedValue(false);
+
+    await expect(
+      signInUseCase({
+        email: 'user@example.com',
+        password: 'input-password',
+      }),
+    ).rejects.toMatchObject({
+      message: 'Invalid email or password',
+      statusCode: 401,
+    });
+
+    expect(tokenService.signAuthToken).not.toHaveBeenCalled();
+  });
+
   it('returns an object with a token when the user exists and the password is correct', async () => {
     usersRepository.findByEmailWithPassword.mockResolvedValue(foundUser);
     passwordService.compare.mockResolvedValue(true);
@@ -102,38 +135,5 @@ describe('makeSignInUseCase', () => {
     });
 
     expect(tokenService.signAuthToken).toHaveBeenCalledWith(1);
-  });
-
-  it('does not compare passwords when the user does not exist', async () => {
-    usersRepository.findByEmailWithPassword.mockResolvedValue(null);
-
-    await expect(
-      signInUseCase({
-        email: 'user@example.com',
-        password: 'input-password',
-      }),
-    ).rejects.toMatchObject({
-      message: 'Invalid email or password',
-      statusCode: 401,
-    });
-
-    expect(passwordService.compare).not.toHaveBeenCalled();
-  });
-
-  it('does not sign an auth token when the password is incorrect', async () => {
-    usersRepository.findByEmailWithPassword.mockResolvedValue(foundUser);
-    passwordService.compare.mockResolvedValue(false);
-
-    await expect(
-      signInUseCase({
-        email: 'user@example.com',
-        password: 'input-password',
-      }),
-    ).rejects.toMatchObject({
-      message: 'Invalid email or password',
-      statusCode: 401,
-    });
-
-    expect(tokenService.signAuthToken).not.toHaveBeenCalled();
   });
 });
