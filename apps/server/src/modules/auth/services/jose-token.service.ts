@@ -15,7 +15,7 @@ const joseTokenService: TokenService = {
       .setExpirationTime('24h')
       .sign(jwtSecret);
   },
-  verifyAuthToken: async (token: string) => {
+  verifyAuthToken: async (token) => {
     try {
       const jwtSecret = new TextEncoder().encode(env.JWT_SECRET);
       const { payload } = await jose.jwtVerify(token, jwtSecret);
