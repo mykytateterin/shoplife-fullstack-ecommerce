@@ -1,5 +1,5 @@
 import type { Prisma } from '../../infrastructure/database/prisma/generated/client.js';
-import type { DomainUser, DomainUserWithPassword } from './users.model.js';
+import type { UsersRepository } from './users.repository.port.js';
 
 import { prisma } from '../../infrastructure/database/prisma/prisma.client.js';
 import { toUser, toUserWithPassword } from './users.repository.mapper.js';
@@ -19,17 +19,12 @@ const prismaUserWithPasswordSelect = {
   passwordHash: true,
 } satisfies Prisma.UserSelect;
 
-type CreateUserData = {
-  email: string;
-  passwordHash: string;
-};
-
 type PrismaUserWithPassword = Prisma.UserGetPayload<{
   select: typeof prismaUserWithPasswordSelect;
 }>;
 
-const usersRepository = {
-  create: async (data: CreateUserData): Promise<DomainUser> => {
+const usersRepository: UsersRepository = {
+  create: async (data) => {
     const createdUser = await prisma.user.create({
       data: {
         email: data.email,
@@ -40,7 +35,7 @@ const usersRepository = {
 
     return toUser(createdUser);
   },
-  findByEmail: async (email: string): Promise<DomainUser | null> => {
+  findByEmail: async (email) => {
     const foundUser = await prisma.user.findUnique({
       select: prismaUserSelect,
       where: { email },
@@ -48,7 +43,7 @@ const usersRepository = {
 
     return foundUser ? toUser(foundUser) : null;
   },
-  findByEmailWithPassword: async (email: string): Promise<DomainUserWithPassword | null> => {
+  findByEmailWithPassword: async (email) => {
     const foundUser = await prisma.user.findUnique({
       select: prismaUserWithPasswordSelect,
       where: { email },
@@ -56,7 +51,7 @@ const usersRepository = {
 
     return foundUser ? toUserWithPassword(foundUser) : null;
   },
-  findById: async (id: number): Promise<DomainUser | null> => {
+  findById: async (id) => {
     const foundUser = await prisma.user.findUnique({
       select: prismaUserSelect,
       where: { id },
