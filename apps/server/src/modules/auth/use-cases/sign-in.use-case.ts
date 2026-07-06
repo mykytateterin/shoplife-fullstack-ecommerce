@@ -1,13 +1,13 @@
-import type { usersRepository } from '../../users/users.repository.js';
+import type { UsersRepository } from '../../users/users.repository.port.js';
 import type { PasswordService } from '../ports/password.service.port.js';
 import type { TokenService } from '../ports/token.service.port.js';
 
 import { AppException } from '../../../core/exceptions/AppException.js';
 
 type MakeSignInUseCaseDependencies = {
-  passwordService: PasswordService;
-  tokenService: TokenService;
-  usersRepository: SignInUsersRepository;
+  passwordService: SignInUseCasePasswordService;
+  tokenService: SignInUseCaseTokenService;
+  usersRepository: SignInUseCaseUsersRepository;
 };
 
 type SignInData = {
@@ -21,7 +21,11 @@ type SignInResult = {
 
 type SignInUseCase = (data: SignInData) => Promise<SignInResult>;
 
-type SignInUsersRepository = Pick<typeof usersRepository, 'findByEmailWithPassword'>;
+type SignInUseCasePasswordService = Pick<PasswordService, 'compare'>;
+
+type SignInUseCaseTokenService = Pick<TokenService, 'signAuthToken'>;
+
+type SignInUseCaseUsersRepository = Pick<UsersRepository, 'findByEmailWithPassword'>;
 
 const makeSignInUseCase = (dependencies: MakeSignInUseCaseDependencies): SignInUseCase => {
   return async (data) => {

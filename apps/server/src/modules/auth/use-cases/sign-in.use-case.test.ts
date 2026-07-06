@@ -5,12 +5,10 @@ import { makeSignInUseCase } from './sign-in.use-case.js';
 
 const tokenService = {
   signAuthToken: vi.fn(),
-  verifyAuthToken: vi.fn(),
 };
 
 const passwordService = {
   compare: vi.fn(),
-  hash: vi.fn(),
 };
 
 const usersRepository = {

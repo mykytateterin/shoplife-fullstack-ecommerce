@@ -4,7 +4,6 @@ import { DomainUserRole } from '../../users/users.model.js';
 import { makeGetCurrentUserUseCase } from './get-current-user.use-case.js';
 
 const tokenService = {
-  signAuthToken: vi.fn(),
   verifyAuthToken: vi.fn(),
 };
 

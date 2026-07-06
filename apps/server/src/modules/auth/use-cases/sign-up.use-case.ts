@@ -1,12 +1,12 @@
 import type { DomainUser } from '../../users/users.model.js';
-import type { usersRepository } from '../../users/users.repository.js';
+import type { UsersRepository } from '../../users/users.repository.port.js';
 import type { PasswordService } from '../ports/password.service.port.js';
 
 import { AppException } from '../../../core/exceptions/AppException.js';
 
 type MakeSignUpUseCaseDependencies = {
-  passwordService: PasswordService;
-  usersRepository: SignUpUsersRepository;
+  passwordService: SignUpUseCasePasswordService;
+  usersRepository: SignUpUseCaseUsersRepository;
 };
 
 type SignUpData = {
@@ -18,7 +18,9 @@ type SignUpResult = DomainUser;
 
 type SignUpUseCase = (data: SignUpData) => Promise<SignUpResult>;
 
-type SignUpUsersRepository = Pick<typeof usersRepository, 'create' | 'findByEmail'>;
+type SignUpUseCasePasswordService = Pick<PasswordService, 'hash'>;
+
+type SignUpUseCaseUsersRepository = Pick<UsersRepository, 'create' | 'findByEmail'>;
 
 const makeSignUpUseCase = (dependencies: MakeSignUpUseCaseDependencies): SignUpUseCase => {
   return async (data) => {

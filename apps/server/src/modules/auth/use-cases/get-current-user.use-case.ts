@@ -1,5 +1,5 @@
 import type { DomainUser } from '../../users/users.model.js';
-import type { usersRepository } from '../../users/users.repository.js';
+import type { UsersRepository } from '../../users/users.repository.port.js';
 import type { TokenService } from '../ports/token.service.port.js';
 
 import { AppException } from '../../../core/exceptions/AppException.js';
@@ -10,12 +10,14 @@ type GetCurrentUserData = {
 
 type GetCurrentUserResult = DomainUser;
 
+type GetCurrentUserTokenService = Pick<TokenService, 'verifyAuthToken'>;
+
 type GetCurrentUserUseCase = (data: GetCurrentUserData) => Promise<GetCurrentUserResult>;
 
-type GetCurrentUserUsersRepository = Pick<typeof usersRepository, 'findById'>;
+type GetCurrentUserUsersRepository = Pick<UsersRepository, 'findById'>;
 
 type MakeGetCurrentUserUseCaseDependencies = {
-  tokenService: TokenService;
+  tokenService: GetCurrentUserTokenService;
   usersRepository: GetCurrentUserUsersRepository;
 };
 

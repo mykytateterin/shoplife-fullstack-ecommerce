@@ -4,7 +4,6 @@ import { DomainUserRole } from '../../users/users.model.js';
 import { makeSignUpUseCase } from './sign-up.use-case.js';
 
 const passwordService = {
-  compare: vi.fn(),
   hash: vi.fn(),
 };
 
