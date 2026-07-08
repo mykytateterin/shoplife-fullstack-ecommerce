@@ -10,6 +10,7 @@ import { useAuthStore } from '../modules/auth/auth.store';
 export default function PublicLayout() {
   const setUser = useAuthStore((state) => state.setUser);
   const clearUser = useAuthStore((state) => state.clearUser);
+  const setIsSessionLoading = useAuthStore((state) => state.setIsSessionLoading);
 
   useEffect(() => {
     const loadCurrentUser = async (): Promise<void> => {
@@ -18,11 +19,13 @@ export default function PublicLayout() {
         setUser(currentUserResponse.data);
       } catch {
         clearUser();
+      } finally {
+        setIsSessionLoading(false);
       }
     };
 
     void loadCurrentUser();
-  }, [clearUser, setUser]);
+  }, [clearUser, setUser, setIsSessionLoading]);
 
   useEffect(() => {
     const dummyCategories = {

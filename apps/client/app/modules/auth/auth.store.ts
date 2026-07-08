@@ -4,8 +4,8 @@ import { create } from 'zustand';
 
 type AuthState = {
   clearUser(): void;
-  isLoading: boolean;
-  setIsLoading(nextIsLoading: boolean): void;
+  isSessionLoading: boolean;
+  setIsSessionLoading(nextIsSessionLoading: boolean): void;
   setUser(nextUser: ContractUser): void;
   user: ContractUser | null;
 };
@@ -14,9 +14,9 @@ const useAuthStore = create<AuthState>((set) => ({
   clearUser: () => {
     set({ user: null });
   },
-  isLoading: false,
-  setIsLoading: (nextIsLoading) => {
-    set({ isLoading: nextIsLoading });
+  isSessionLoading: true,
+  setIsSessionLoading: (nextIsSessionLoading) => {
+    set({ isSessionLoading: nextIsSessionLoading });
   },
   setUser: (nextUser) => {
     set({ user: nextUser });
