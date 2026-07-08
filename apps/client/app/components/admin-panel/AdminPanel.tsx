@@ -1,52 +1,43 @@
 import { useState } from 'react';
 
+import { CategoriesPanel } from '..';
 import styles from './AdminPanel.module.scss';
 
-import { CategoriesPanel } from '..';
-// import ProductsPanel from './ProductsPanel';
-// import PromotionsPanel from './PromotionsPanel';
-// import UsersPanel from './UsersPanel';
-
-export const AdminPanel = () => {
+const AdminPanel = (): React.JSX.Element => {
   const [currentPanel, setCurrentPanel] = useState('');
 
-  const handleClick = (e) => {
-    setCurrentPanel(e.target.innerText);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    const { innerText } = event.currentTarget;
+
+    setCurrentPanel(innerText);
   };
 
-  const panelSwitch = () => {
+  const panelSwitch = (): null | React.JSX.Element => {
     switch (currentPanel) {
       case 'Categories':
         return <CategoriesPanel />;
-      case 'Products':
-        // return <ProductsPanel />;
-        break;
-      case 'Promotions':
-        // return <PromotionsPanel />;
-        break;
-      case 'Users':
-        // return <UsersPanel />;
-        break;
       default:
-        break;
+        return null;
     }
   };
 
   return (
     <div className={styles['admin-panel']}>
-      <button type="button" onClick={handleClick}>
+      <button onClick={handleClick} type="button">
         Categories
       </button>
-      <button type="button" onClick={handleClick}>
+      <button onClick={handleClick} type="button">
         Products
       </button>
-      <button type="button" onClick={handleClick}>
+      <button onClick={handleClick} type="button">
         Promotions
       </button>
-      <button type="button" onClick={handleClick}>
+      <button onClick={handleClick} type="button">
         Users
       </button>
       {panelSwitch()}
     </div>
   );
 };
+
+export { AdminPanel };
