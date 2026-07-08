@@ -1,4 +1,16 @@
 {
   "$schema": "https://www.schemastore.org/tsconfig.json",
-  "extends": "@shoplife/tsconfig/bundler"
+  "extends": "@shoplife/tsconfig/base",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ES2025"],
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "paths": {
+      "~/*": ["./app/*"]
+    },
+    "resolveJsonModule": true,
+    "types": ["node", "vite/client"],
+    "rootDirs": [".", "./.react-router/types"]
+  }
 }

@@ -5,7 +5,6 @@
   },
   "exports": {
     "./base": "./base.json",
-    "./bundler": "./bundler.json",
     "./node": "./node.json"
   },
   "name": "@shoplife/tsconfig",
