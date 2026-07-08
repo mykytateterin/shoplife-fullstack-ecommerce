@@ -1,5 +1,7 @@
 import styles from './Promotions.module.scss';
 
-export const Promotions = () => {
-  return <div className={styles['promotions']}></div>;
+const Promotions = (): React.JSX.Element => {
+  return <div className={styles.promotions} />;
 };
+
+export { Promotions };
