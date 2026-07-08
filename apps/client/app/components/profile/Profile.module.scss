@@ -3,7 +3,7 @@
 .profile {
   @include mixins.page-body-base;
 
-  &__login {
+  &__email {
     font-size: 24px;
   }
 }

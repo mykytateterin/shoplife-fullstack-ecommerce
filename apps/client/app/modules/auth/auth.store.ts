@@ -1,38 +1,27 @@
+import type { ContractUser } from '@shoplife/contracts';
+
 import { create } from 'zustand';
 
-import { getAuthCookies } from '../../lib/storage/cookies/authCookies';
-import { getUsersStorage } from '../../lib/storage/users/usersStorage';
-
-type UserState = {
-  generateToken: () => string;
-  isLogged: boolean | null;
-  loginCheck: () => void;
+type AuthState = {
+  clearUser(): void;
+  isLoading: boolean;
+  setLoading(nextIsLoading: boolean): void;
+  setUser(nextUser: ContractUser): void;
+  user: ContractUser | null;
 };
 
-const useUserStore = create<UserState>((set) => ({
-  generateToken: () => {
-    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let token = '';
-
-    for (let i = 0; i < 16; i++) {
-      token += chars[Math.floor(Math.random() * chars.length)];
-    }
-
-    return token;
+const useAuthStore = create<AuthState>((set) => ({
+  clearUser: () => {
+    set({ user: null });
   },
-  isLogged: null,
-  loginCheck: () => {
-    const { login, token } = getAuthCookies();
-    const users = getUsersStorage();
-
-    if (login && token) {
-      const userToken = users?.[login]?.token;
-
-      set({ isLogged: userToken === token });
-    }
-
-    set({ isLogged: false });
+  isLoading: false,
+  setLoading: (nextIsLoading) => {
+    set({ isLoading: nextIsLoading });
   },
+  setUser: (nextUser) => {
+    set({ user: nextUser });
+  },
+  user: null,
 }));
 
-export { useUserStore };
+export { useAuthStore };

@@ -1,11 +1,9 @@
-import { useUserStore } from '../../stores';
-
-import { Profile, AuthForm } from '../../components';
-
+import { AuthForm, Profile } from '../../components';
+import { useAuthStore } from '../../modules/auth/auth.store';
 import styles from './AccountPage.module.scss';
 
 export const AccountPage = () => {
-  const isLogged = useUserStore((state) => state.isLogged);
+  const user = useAuthStore((state) => state.user);
 
-  return <main className={styles['account-page']}>{isLogged ? <Profile /> : <AuthForm />}</main>;
+  return <main className={styles['account-page']}>{user ? <Profile /> : <AuthForm />}</main>;
 };

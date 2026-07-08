@@ -1,54 +1,45 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { useUserStore } from '../../stores';
-
+import { authApi } from '../../modules/auth/auth.api';
+import { useAuthStore } from '../../modules/auth/auth.store';
 import styles from './AuthForm.module.scss';
-import { getUsersStorage, setUsersStorage } from '../../lib/storage/users/usersStorage';
-import { setAuthCookies } from '../../lib/storage/cookies/authCookies';
 
-export const AuthForm = () => {
+const AuthForm = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const [authFormData, setAuthFormData] = useState({ login: '', password: '' });
+  const [authFormData, setAuthFormData] = useState({ email: '', password: '' });
+  const setUser = useAuthStore((state) => state.setUser);
 
-  const generateToken = useUserStore((state) => state.generateToken);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const parsedUsers = getUsersStorage();
 
     if (isLoginForm) {
-      const parsedAccount = parsedUsers?.[authFormData.login];
+      await authApi.signIn({
+        email: authFormData.email,
+        password: authFormData.password,
+      });
 
-      if (parsedAccount && authFormData.password === parsedAccount?.password)
-        handleCookies(authFormData.login, parsedAccount.token);
+      const currentUserResponse = await authApi.getCurrentUser();
+      setUser(currentUserResponse.data);
+
+      await navigate('/account');
+      return;
     } else {
-      const isLoginTaken = !!parsedUsers?.[authFormData.login];
-      if (isLoginTaken) alert('Login is already taken!');
-      else {
-        const userData = {
-          [authFormData.login]: {
-            password: authFormData.password,
-            token: generateToken(),
-            isAdmin: false,
-          },
-        };
+      const signUpResponse = await authApi.signUp({
+        email: authFormData.email,
+        password: authFormData.password,
+      });
 
-        handleCookies(authFormData.login, userData[authFormData.login].token);
-        Object.assign(parsedUsers, userData);
-        setUsersStorage(parsedUsers);
-      }
+      setUser(signUpResponse.data);
     }
-  };
 
-  const handleCookies = (login, token) => {
-    setAuthCookies(login, token);
-    navigate('/account');
+    await navigate('/account');
   };
 
   const handleChange = (e) => {
-    if (e.target.id === 'login') setAuthFormData({ ...authFormData, login: e.target.value });
+    if (e.target.id === 'email') setAuthFormData({ ...authFormData, email: e.target.value });
     else if (e.target.id === 'password')
       setAuthFormData({ ...authFormData, password: e.target.value });
   };
@@ -58,38 +49,40 @@ export const AuthForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles['form']}>
-      <label htmlFor="login" className={styles['form__login-title']}>
-        Login
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <label className={styles['form__login-title']} htmlFor="email">
+        Email
       </label>
       <input
-        type="text"
-        id="login"
-        value={authFormData.login}
+        className={styles.form__input}
+        id="email"
         onChange={handleChange}
-        className={styles['form__input']}
         required
+        type="email"
+        value={authFormData.email}
       />
-      <label htmlFor="password" className={styles['form__password-title']}>
+      <label className={styles['form__password-title']} htmlFor="password">
         Password
       </label>
       <input
-        type="password"
+        className={styles.form__input}
         id="password"
-        value={authFormData.password}
         onChange={handleChange}
-        className={styles['form__input']}
         required
+        type="password"
+        value={authFormData.password}
       />
       <p className={styles['form__change-title']}>
         {isLoginForm ? 'New to ShopLife?' : 'Already a member?'}
       </p>
-      <p onClick={handleClick} className={styles['form__change-button']}>
+      <p className={styles['form__change-button']} onClick={handleClick}>
         {isLoginForm ? 'Click here to create a new account!' : 'Click here to sign in!'}
       </p>
-      <button type="submit" className={styles['form__button']}>
+      <button className={styles.form__button} type="submit">
         {isLoginForm ? 'Enter' : 'Sign Up'}
       </button>
     </form>
   );
 };
+
+export { AuthForm };
