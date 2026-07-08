@@ -7,7 +7,7 @@ import { getCategoriesStorage, setCategoriesStorage } from '../lib/storage/catal
 import { authApi } from '../modules/auth/auth.api';
 import { useAuthStore } from '../modules/auth/auth.store';
 
-export default function PublicLayout() {
+const PublicLayout = (): React.JSX.Element => {
   const setUser = useAuthStore((state) => state.setUser);
   const clearUser = useAuthStore((state) => state.clearUser);
   const setIsSessionLoading = useAuthStore((state) => state.setIsSessionLoading);
@@ -55,4 +55,6 @@ export default function PublicLayout() {
       <Footer />
     </>
   );
-}
+};
+
+export default PublicLayout;
