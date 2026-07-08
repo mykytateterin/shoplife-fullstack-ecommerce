@@ -1,9 +1,11 @@
 import styles from './HomePage.module.scss';
 
-export const HomePage = () => {
+const HomePage = (): React.JSX.Element => {
   return (
     <main className={styles['home-page']}>
-      <div className={styles['home-page__body']}></div>
+      <div className={styles['home-page__body']} />
     </main>
   );
 };
+
+export { HomePage };
