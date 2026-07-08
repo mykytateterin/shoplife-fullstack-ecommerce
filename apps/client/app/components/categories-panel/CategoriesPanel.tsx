@@ -1,24 +1,25 @@
 import { useState } from 'react';
 
-import deleteIcon from '../../assets/images/icons/delete-icon.svg';
+import type { Categories } from '../../types/domain';
 
-import styles from './CategoriesPanel.module.scss';
+import deleteIcon from '../../assets/images/icons/delete-icon.svg';
 import {
   getCategoriesStorage,
   setCategoriesStorage,
 } from '../../lib/storage/catalog/categoryStorage';
+import styles from './CategoriesPanel.module.scss';
 
-export const CategoriesPanel = () => {
+const CategoriesPanel = (): React.JSX.Element => {
   const [categories, setCategories] = useState(getCategoriesStorage());
   const [isAddNewCategory, setIsAddNewCategory] = useState(false);
   const [newCategory, setNewCategory] = useState({ name: '', url: '' });
 
-  const handleAddNewCategory = () => {
+  const handleAddNewCategory = (): void => {
     setIsAddNewCategory(!isAddNewCategory);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>): void => {
+    event.preventDefault();
 
     const updatedCategories = {
       [newCategory.name]: {
@@ -32,14 +33,21 @@ export const CategoriesPanel = () => {
     setNewCategory({ name: '', url: '' });
   };
 
-  const handleChange = (e) => {
-    if (e.target.id === 'name') setNewCategory({ ...newCategory, name: e.target.value });
-    else if (e.target.id === 'url') setNewCategory({ ...newCategory, url: e.target.value });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const { id, value } = event.currentTarget;
+
+    if (id === 'name') {
+      setNewCategory({ ...newCategory, name: value });
+      return;
+    }
+    if (id === 'url') {
+      setNewCategory({ ...newCategory, url: value });
+    }
   };
 
-  const handleDelete = (index) => {
-    const keepedCategories = {};
-    const keepedCategoriesArray = Object.keys(categories || {})
+  const handleDelete = (index: number): void => {
+    const keepedCategories: Categories = {};
+    const keepedCategoriesArray = Object.keys(categories)
       .map((key, i) => index !== i && { [key]: categories[key] })
       .filter((value) => !!value);
 
@@ -51,42 +59,44 @@ export const CategoriesPanel = () => {
   return (
     <div className={styles['categories-panel']}>
       <ul className={styles['categories-panel__categories']}>
-        {Object.keys(categories || {}).map((key, index) => (
-          <li key={key} className={styles['categories-panel__categories-item']}>
-            {key} {categories[key].url}
+        {Object.entries(categories).map(([name, category], index) => (
+          <li className={styles['categories-panel__categories-item']} key={name}>
+            {name} {category.url}
             <img
-              onClick={() => handleDelete(index)}
-              src={deleteIcon}
               alt="Delete the category"
               className={styles['categories-panel__categories-icon']}
+              onClick={() => {
+                handleDelete(index);
+              }}
+              src={deleteIcon}
             />
           </li>
         ))}
       </ul>
-      <p onClick={handleAddNewCategory} className={styles['categories-panel__add-new']}>
+      <p className={styles['categories-panel__add-new']} onClick={handleAddNewCategory}>
         Add a new category
       </p>
       {isAddNewCategory && (
-        <form onSubmit={handleSubmit} className={styles['categories-panel__add-new-form']}>
+        <form className={styles['categories-panel__add-new-form']} onSubmit={handleSubmit}>
           <input
-            type="text"
+            className={styles['categories-panel__add-new-input']}
             id="name"
-            placeholder="Name"
-            value={newCategory.name}
             onChange={handleChange}
-            className={styles['categories-panel__add-new-input']}
+            placeholder="Name"
             required
+            type="text"
+            value={newCategory.name}
           />
           <input
-            type="text"
-            id="url"
-            placeholder="URL after /"
-            value={newCategory.url}
-            onChange={handleChange}
             className={styles['categories-panel__add-new-input']}
+            id="url"
+            onChange={handleChange}
+            placeholder="URL after /"
             required
+            type="text"
+            value={newCategory.url}
           />
-          <button type="submit" className={styles['categories-panel__add-new-submit']}>
+          <button className={styles['categories-panel__add-new-submit']} type="submit">
             Add
           </button>
         </form>
@@ -94,3 +104,5 @@ export const CategoriesPanel = () => {
     </div>
   );
 };
+
+export { CategoriesPanel };
