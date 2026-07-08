@@ -1,3 +1,5 @@
+import './styles/globals.scss';
+
 import {
   isRouteErrorResponse,
   Links,
@@ -8,53 +10,21 @@ import {
 } from 'react-router';
 
 import type { Route } from './+types/root';
-import './styles/globals.scss';
 
-export const links: Route.LinksFunction = () => [
+const links: Route.LinksFunction = () => [
   {
-    rel: 'icon',
-    type: 'image/png',
     href: '/favicon-96x96.png',
+    rel: 'icon',
     sizes: '96x96',
+    type: 'image/png',
   },
-  { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-  { rel: 'shortcut icon', href: '/favicon.ico' },
-  { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-  { rel: 'manifest', href: '/site.webmanifest' },
+  { href: '/favicon.svg', rel: 'icon', type: 'image/svg+xml' },
+  { href: '/favicon.ico', rel: 'shortcut icon' },
+  { href: '/apple-touch-icon.png', rel: 'apple-touch-icon', sizes: '180x180' },
+  { href: '/site.webmanifest', rel: 'manifest' },
 ];
 
-export function meta(): Route.MetaDescriptors {
-  return [
-    { title: 'ShopLife' },
-    { name: 'description', content: 'ShopLife - Online Retail for You' },
-    { name: 'theme-color', content: '#000000' },
-    { name: 'apple-mobile-web-app-title', content: 'ShopLife' },
-  ];
-}
-
-export function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
-export default function App() {
-  return <Outlet />;
-}
-
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps): React.JSX.Element => {
   let message = 'Oops!';
   let details = 'An unexpected error occurred.';
   let stack: string | undefined;
@@ -79,4 +49,38 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       )}
     </main>
   );
-}
+};
+
+const Layout = ({ children }: { children: React.ReactNode }): React.JSX.Element => {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+};
+
+const meta = (): Route.MetaDescriptors => {
+  return [
+    { title: 'ShopLife' },
+    { content: 'ShopLife - Online Retail for You', name: 'description' },
+    { content: '#000000', name: 'theme-color' },
+    { content: 'ShopLife', name: 'apple-mobile-web-app-title' },
+  ];
+};
+
+const App = (): React.JSX.Element => {
+  return <Outlet />;
+};
+
+export { ErrorBoundary, Layout, links, meta };
+export default App;
