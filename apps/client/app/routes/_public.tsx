@@ -4,8 +4,26 @@ import { Outlet } from 'react-router';
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
 import { getCategoriesStorage, setCategoriesStorage } from '../lib/storage/catalog/categoryStorage';
+import { authApi } from '../modules/auth/auth.api';
+import { useAuthStore } from '../modules/auth/auth.store';
 
 export default function PublicLayout() {
+  const setUser = useAuthStore((state) => state.setUser);
+  const clearUser = useAuthStore((state) => state.clearUser);
+
+  useEffect(() => {
+    const loadCurrentUser = async (): Promise<void> => {
+      try {
+        const currentUserResponse = await authApi.getCurrentUser();
+        setUser(currentUserResponse.data);
+      } catch {
+        clearUser();
+      }
+    };
+
+    void loadCurrentUser();
+  }, [clearUser, setUser]);
+
   useEffect(() => {
     const dummyCategories = {
       kids: {
