@@ -1,6 +1,6 @@
 import { AccountPage } from '../pages/account/AccountPage';
 
-const AccountRoute = () => {
+const AccountRoute = (): React.JSX.Element => {
   return <AccountPage />;
 };
 
