@@ -4,7 +4,7 @@ import { useAuthStore } from '../../modules/auth/auth.store';
 import { AdminPanel } from '../admin-panel/AdminPanel';
 import styles from './Profile.module.scss';
 
-export const Profile = () => {
+const Profile = (): null | React.JSX.Element => {
   const [isAdminPanel, setIsAdminPanel] = useState(false);
   const user = useAuthStore((state) => state.user);
 
@@ -12,7 +12,7 @@ export const Profile = () => {
     return null;
   }
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setIsAdminPanel(!isAdminPanel);
   };
 
@@ -26,3 +26,5 @@ export const Profile = () => {
     </div>
   );
 };
+
+export { Profile };
