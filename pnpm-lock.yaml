@@ -18,9 +18,6 @@ catalogs:
     '@react-router/serve':
       specifier: 7.15.1
       version: 7.15.1
-    '@types/js-cookie':
-      specifier: ^3.0.6
-      version: 3.0.6
     '@types/react':
       specifier: ^19.2.14
       version: 19.2.17
@@ -30,9 +27,6 @@ catalogs:
     framer-motion:
       specifier: ^12.38.0
       version: 12.40.0
-    js-cookie:
-      specifier: ^3.0.5
-      version: 3.0.8
     normalize.css:
       specifier: ^8.0.1
       version: 8.0.1
@@ -206,9 +200,6 @@ importers:
       framer-motion:
         specifier: catalog:client
         version: 12.40.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      js-cookie:
-        specifier: catalog:client
-        version: 3.0.8
       normalize.css:
         specifier: catalog:client
         version: 8.0.1
@@ -240,9 +231,6 @@ importers:
       '@shoplife/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
-      '@types/js-cookie':
-        specifier: catalog:client
-        version: 3.0.6
       '@types/react':
         specifier: catalog:client
         version: 19.2.17
@@ -1528,9 +1516,6 @@ packages:
   '@types/http-errors@2.0.5':
     resolution: {integrity: sha512-r8Tayk8HJnX0FztbZN7oVqGccWgw98T/0neJphO91KkmOzug1KkofZURD4UaD5uH8AqcFLfdPErnBod0u71/qg==}
 
-  '@types/js-cookie@3.0.6':
-    resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
-
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
@@ -2583,9 +2568,6 @@ packages:
 
   jose@6.2.3:
     resolution: {integrity: sha512-YYVDInQKFJfR/xa3ojUTl8c2KoTwiL1R5Wg9YCydwH0x0B9grbzlg5HC7mMjCtUJjbQ/YnGEZIhI5tCgfTb4Hw==}
-
-  js-cookie@3.0.8:
-    resolution: {integrity: sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -4797,8 +4779,6 @@ snapshots:
 
   '@types/http-errors@2.0.5': {}
 
-  '@types/js-cookie@3.0.6': {}
-
   '@types/json-schema@7.0.15': {}
 
   '@types/node@25.9.3':
@@ -6115,8 +6095,6 @@ snapshots:
   jiti@2.7.0: {}
 
   jose@6.2.3: {}
-
-  js-cookie@3.0.8: {}
 
   js-tokens@4.0.0: {}
 

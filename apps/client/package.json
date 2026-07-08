@@ -5,7 +5,6 @@
     "@react-router/serve": "catalog:client",
     "@shoplife/contracts": "workspace:*",
     "framer-motion": "catalog:client",
-    "js-cookie": "catalog:client",
     "normalize.css": "catalog:client",
     "react": "catalog:client",
     "react-dom": "catalog:client",
@@ -18,7 +17,6 @@
     "@react-router/fs-routes": "catalog:client",
     "@shoplife/eslint-config": "workspace:*",
     "@shoplife/tsconfig": "workspace:*",
-    "@types/js-cookie": "catalog:client",
     "@types/react": "catalog:client",
     "@types/react-dom": "catalog:client",
     "sass-embedded": "catalog:client"
