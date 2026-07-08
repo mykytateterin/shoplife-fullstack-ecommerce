@@ -1,13 +1,17 @@
-import { CategoriesSchema, type Categories } from '../../../types/domain';
+import { type Categories, CategoriesSchema } from '../../../types/domain';
 
-export const setCategoriesStorage = (categories: Categories): void => {
-  localStorage.setItem('categories', JSON.stringify(categories));
+const deleteCategoriesStorage = (): void => {
+  localStorage.removeItem('categories');
 };
 
-export const getCategoriesStorage = (): Categories => {
-  const categoriesStorageData = JSON.parse(localStorage.getItem('categories') || '{}');
+const getCategoriesStorage = (): Categories => {
+  const categoriesStorageData: unknown = JSON.parse(localStorage.getItem('categories') ?? '{}');
 
   return CategoriesSchema.parse(categoriesStorageData);
 };
 
-export const deleteCategoriesStorage = (): void => localStorage.removeItem('categories');
+const setCategoriesStorage = (categories: Categories): void => {
+  localStorage.setItem('categories', JSON.stringify(categories));
+};
+
+export { deleteCategoriesStorage, getCategoriesStorage, setCategoriesStorage };
