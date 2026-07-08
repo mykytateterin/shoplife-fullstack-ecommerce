@@ -3,10 +3,10 @@ import type { ContractUser } from '@shoplife/contracts';
 import { create } from 'zustand';
 
 type AuthState = {
-  clearUser(): void;
+  clearUser: () => void;
   isSessionLoading: boolean;
-  setIsSessionLoading(nextIsSessionLoading: boolean): void;
-  setUser(nextUser: ContractUser): void;
+  setIsSessionLoading: (nextIsSessionLoading: boolean) => void;
+  setUser: (nextUser: ContractUser) => void;
   user: ContractUser | null;
 };
 

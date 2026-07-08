@@ -5,15 +5,16 @@ import { authApi } from '../../modules/auth/auth.api';
 import { useAuthStore } from '../../modules/auth/auth.store';
 import styles from './AuthForm.module.scss';
 
-const AuthForm = () => {
+const AuthForm = (): React.JSX.Element => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [authFormData, setAuthFormData] = useState({ email: '', password: '' });
+
   const setUser = useAuthStore((state) => state.setUser);
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
 
     if (isLoginForm) {
       await authApi.signIn({
@@ -24,32 +25,39 @@ const AuthForm = () => {
       const currentUserResponse = await authApi.getCurrentUser();
       setUser(currentUserResponse.data);
 
-      await navigate('/account');
+      void navigate('/account');
       return;
-    } else {
-      const signUpResponse = await authApi.signUp({
-        email: authFormData.email,
-        password: authFormData.password,
-      });
-
-      setUser(signUpResponse.data);
     }
 
-    await navigate('/account');
+    const signUpResponse = await authApi.signUp({
+      email: authFormData.email,
+      password: authFormData.password,
+    });
+
+    setUser(signUpResponse.data);
+
+    void navigate('/account');
   };
 
-  const handleChange = (e) => {
-    if (e.target.id === 'email') setAuthFormData({ ...authFormData, email: e.target.value });
-    else if (e.target.id === 'password')
-      setAuthFormData({ ...authFormData, password: e.target.value });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const { id, value } = event.currentTarget;
+
+    if (id === 'email') {
+      setAuthFormData({ ...authFormData, email: value });
+      return;
+    }
+
+    if (id === 'password') {
+      setAuthFormData({ ...authFormData, password: value });
+    }
   };
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setIsLoginForm(!isLoginForm);
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={(event) => void handleSubmit(event)}>
       <label className={styles['form__login-title']} htmlFor="email">
         Email
       </label>
