@@ -5,6 +5,7 @@
     "@react-router/serve": "catalog:client",
     "@shoplife/contracts": "workspace:*",
     "framer-motion": "catalog:client",
+    "isbot": "catalog:client",
     "normalize.css": "catalog:client",
     "react": "catalog:client",
     "react-dom": "catalog:client",
