@@ -1,64 +1,66 @@
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { motion } from 'framer-motion';
 
-import logo from '../../logo.svg';
-import openHamburgerIcon from '../../assets/images/icons/open-hamburger-menu-icon.svg';
-import closeHamburgerIcon from '../../assets/images/icons/close-hamburger-menu-icon.svg';
 import accountIcon from '../../assets/images/icons/account-icon.svg';
-
-import styles from './Header.module.scss';
+import closeHamburgerIcon from '../../assets/images/icons/close-hamburger-menu-icon.svg';
+import openHamburgerIcon from '../../assets/images/icons/open-hamburger-menu-icon.svg';
 import { getCategoriesStorage } from '../../lib/storage/catalog/categoryStorage';
+import logo from '../../logo.svg';
+import styles from './Header.module.scss';
 
-export const Header = () => {
+const Header = (): React.JSX.Element => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+
   const navCategories = getCategoriesStorage();
 
-  const handleHamburger = () => {
+  const handleHamburger = (): void => {
     setIsHamburgerOpen(!isHamburgerOpen);
   };
 
   return (
-    <header className={styles['header']}>
-      <div className={styles['header__body']}>
-        <Link to="/" className={styles['header__logo']}>
-          <img src={logo} alt="ShopLife logo" />
+    <header className={styles.header}>
+      <div className={styles.header__body}>
+        <Link className={styles.header__logo} to="/">
+          <img alt="ShopLife logo" src={logo} />
         </Link>
         <motion.div
-          animate={isHamburgerOpen ? { x: '-100%', display: 'flex' } : { x: 0, display: 'none' }}
+          animate={isHamburgerOpen ? { display: 'flex', x: '-100%' } : { display: 'none', x: 0 }}
+          className={styles.header__navigation}
           transition={{ type: 'tween' }}
-          className={styles['header__navigation']}
         >
           <nav className={styles['header__navigation-body']}>
-            {Object.keys(navCategories || {}).map((key) => {
+            {Object.entries(navCategories).map(([name, category]) => {
               return (
                 <Link
-                  key={navCategories[key].url}
-                  to={navCategories[key].url}
                   className={styles['header__navigation-item']}
+                  key={category.url}
+                  to={category.url}
                 >
-                  {key.toUpperCase()}
+                  {name.toUpperCase()}
                 </Link>
               );
             })}
           </nav>
           <img
-            src={closeHamburgerIcon}
             alt="Button to close the navigation slider"
-            onClick={handleHamburger}
             className={styles['header__close-hamburger']}
+            onClick={handleHamburger}
+            src={closeHamburgerIcon}
           />
         </motion.div>
-        <Link to="/account" className={styles['header__account']}>
-          <img src={accountIcon} alt="Button to access your account" />
+        <Link className={styles.header__account} to="/account">
+          <img alt="Button to access your account" src={accountIcon} />
         </Link>
         <img
-          src={openHamburgerIcon}
           alt="Button to open the navigation slider"
-          onClick={handleHamburger}
           className={styles['header__open-hamburger']}
+          onClick={handleHamburger}
+          src={openHamburgerIcon}
         />
       </div>
     </header>
   );
 };
+
+export { Header };
