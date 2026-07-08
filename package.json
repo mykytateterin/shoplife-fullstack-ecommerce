@@ -25,8 +25,8 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "test:server": "pnpm --filter @shoplife/server test",
-    "typecheck": "pnpm typecheck:root && pnpm --filter @shoplife/client typecheck && pnpm --filter @shoplife/server typecheck && pnpm --filter @shoplife/contracts typecheck && pnpm --filter @shoplife/eslint-config typecheck && pnpm --filter @shoplife/tsconfig typecheck",
-    "typecheck:root": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "typecheck:all": "pnpm -r typecheck"
   },
   "type": "module"
 }

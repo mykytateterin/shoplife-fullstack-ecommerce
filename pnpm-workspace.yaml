@@ -4,6 +4,7 @@ allowBuilds:
   bcrypt: true
   esbuild: true
   prisma: true
+includeWorkspaceRoot: true
 packages:
   - 'apps/*'
   - 'packages/*'
