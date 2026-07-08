@@ -1,6 +1,6 @@
 import { NotFoundPage } from '../pages/not-found/NotFoundPage';
 
-const NotFoundRoute = () => {
+const NotFoundRoute = (): React.JSX.Element => {
   return <NotFoundPage />;
 };
 
