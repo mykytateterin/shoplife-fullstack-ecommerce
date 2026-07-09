@@ -22,7 +22,11 @@
   "scripts": {
     "dev:client": "pnpm --filter @shoplife/client dev",
     "dev:server": "pnpm --filter @shoplife/server dev",
-    "format": "prettier --write .",
+    "format:all": "prettier --write .",
+    "lint": "eslint *",
+    "lint:all": "pnpm -r lint",
+    "lint:fix": "eslint * --fix",
+    "lint:fix:all": "pnpm -r lint:fix",
     "prepare": "husky",
     "test:server": "pnpm --filter @shoplife/server test",
     "typecheck": "tsc --noEmit",
