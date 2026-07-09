@@ -1,6 +1,5 @@
 {
   "$schema": "https://www.schemastore.org/tsconfig.json",
-  "extends": "@shoplife/tsconfig/base",
   "compilerOptions": {
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ES2025"],
@@ -10,7 +9,8 @@
       "~/*": ["./app/*"]
     },
     "resolveJsonModule": true,
-    "types": ["node", "vite/client"],
-    "rootDirs": [".", "./.react-router/types"]
-  }
+    "rootDirs": [".", "./.react-router/types"],
+    "types": ["node", "vite/client"]
+  },
+  "extends": "@shoplife/tsconfig/base"
 }
