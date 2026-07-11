@@ -15,6 +15,10 @@
     "*.{yaml,yml,json,jsonc,json5,js,mjs,cjs,ts,tsx,mts,cts}": [
       "eslint --fix",
       "prettier --write"
+    ],
+    "*.prisma": [
+      "pnpm --filter @shoplife/server exec prisma format --schema",
+      "pnpm --filter @shoplife/server exec prisma validate --schema"
     ]
   },
   "name": "shoplife-monorepo",
