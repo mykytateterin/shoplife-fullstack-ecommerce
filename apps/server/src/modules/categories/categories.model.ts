@@ -7,4 +7,11 @@ type DomainCategory = {
   slug: string;
 };
 
-export type { DomainCategory };
+type DomainCategoryTreeNode = {
+  children: DomainCategoryTreeNode[];
+  id: number;
+  name: string;
+  slug: string;
+};
+
+export type { DomainCategory, DomainCategoryTreeNode };
