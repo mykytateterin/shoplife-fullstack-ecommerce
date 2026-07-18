@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { CategoriesPanel } from '..';
 import styles from './AdminPanel.module.scss';
 
 const AdminPanel = (): React.JSX.Element => {
@@ -14,8 +13,6 @@ const AdminPanel = (): React.JSX.Element => {
 
   const panelSwitch = (): null | React.JSX.Element => {
     switch (currentPanel) {
-      case 'Categories':
-        return <CategoriesPanel />;
       default:
         return null;
     }
