@@ -138,6 +138,38 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
           },
         ],
         'no-undef': 'off',
+        'perfectionist/sort-modules': [
+          'error',
+          {
+            fallbackSort: {
+              order: 'asc',
+              type: 'natural',
+            },
+            order: 'asc',
+            type: 'usage',
+          },
+        ],
+        'perfectionist/sort-union-types': [
+          'error',
+          {
+            groups: [
+              'conditional',
+              'function',
+              'import',
+              'intersection',
+              'keyword',
+              'literal',
+              'named',
+              'object',
+              'operator',
+              'tuple',
+              'union',
+              'nullish',
+            ],
+            order: 'asc',
+            type: 'natural',
+          },
+        ],
       },
     },
     {
