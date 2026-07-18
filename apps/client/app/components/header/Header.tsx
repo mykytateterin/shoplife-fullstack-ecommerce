@@ -2,17 +2,18 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router';
 
+import { useCategoriesStore } from '~/modules/categories/categories.store';
+
 import accountIcon from '../../assets/images/icons/account-icon.svg';
 import closeHamburgerIcon from '../../assets/images/icons/close-hamburger-menu-icon.svg';
 import openHamburgerIcon from '../../assets/images/icons/open-hamburger-menu-icon.svg';
-import { getCategoriesStorage } from '../../lib/storage/catalog/categoryStorage';
 import logo from '../../logo.svg';
 import styles from './Header.module.scss';
 
 const Header = (): React.JSX.Element => {
-  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+  const categories = useCategoriesStore((state) => state.categories);
 
-  const navCategories = getCategoriesStorage();
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
   const handleHamburger = (): void => {
     setIsHamburgerOpen(!isHamburgerOpen);
@@ -30,14 +31,14 @@ const Header = (): React.JSX.Element => {
           transition={{ type: 'tween' }}
         >
           <nav className={styles['header__navigation-body']}>
-            {Object.entries(navCategories).map(([name, category]) => {
+            {categories.map((category) => {
               return (
                 <Link
                   className={styles['header__navigation-item']}
-                  key={category.url}
-                  to={category.url}
+                  key={category.path}
+                  to={category.path}
                 >
-                  {name.toUpperCase()}
+                  {category.name.toUpperCase()}
                 </Link>
               );
             })}

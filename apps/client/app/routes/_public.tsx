@@ -1,16 +1,22 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
 
+import { authApi } from '~/modules/auth/auth.api';
+import { useAuthStore } from '~/modules/auth/auth.store';
+import { categoriesApi } from '~/modules/categories/categories.api';
+import { useCategoriesStore } from '~/modules/categories/categories.store';
+
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
-import { getCategoriesStorage, setCategoriesStorage } from '../lib/storage/catalog/categoryStorage';
-import { authApi } from '../modules/auth/auth.api';
-import { useAuthStore } from '../modules/auth/auth.store';
 
 const PublicLayout = (): React.JSX.Element => {
   const setUser = useAuthStore((state) => state.setUser);
   const clearUser = useAuthStore((state) => state.clearUser);
   const setIsSessionLoading = useAuthStore((state) => state.setIsSessionLoading);
+
+  const setCategories = useCategoriesStore((state) => state.setCategories);
+  const clearCategories = useCategoriesStore((state) => state.clearCategories);
+  const setAreCategoriesLoading = useCategoriesStore((state) => state.setAreCategoriesLoading);
 
   useEffect(() => {
     const loadCurrentUser = async (): Promise<void> => {
@@ -24,29 +30,27 @@ const PublicLayout = (): React.JSX.Element => {
       }
     };
 
-    void loadCurrentUser();
-  }, [clearUser, setUser, setIsSessionLoading]);
-
-  useEffect(() => {
-    const dummyCategories = {
-      kids: {
-        url: '/kids',
-      },
-      men: {
-        url: '/men',
-      },
-      sale: {
-        url: '/sale',
-      },
-      women: {
-        url: '/women',
-      },
+    const loadCategories = async (): Promise<void> => {
+      try {
+        const getCategoriesResponse = await categoriesApi.getCategories();
+        setCategories(getCategoriesResponse.data);
+      } catch {
+        clearCategories();
+      } finally {
+        setAreCategoriesLoading(false);
+      }
     };
 
-    if (Object.keys(getCategoriesStorage()).length === 0) {
-      setCategoriesStorage(dummyCategories);
-    }
-  }, []);
+    void loadCurrentUser();
+    void loadCategories();
+  }, [
+    clearUser,
+    setUser,
+    setIsSessionLoading,
+    clearCategories,
+    setCategories,
+    setAreCategoriesLoading,
+  ]);
 
   return (
     <>
