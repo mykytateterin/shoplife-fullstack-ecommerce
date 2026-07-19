@@ -4,6 +4,12 @@ import type { TokenService } from '../ports/token.service.port.js';
 
 import { AppException } from '../../../core/exceptions/AppException.js';
 
+type SignInUseCasePasswordService = Pick<PasswordService, 'compare'>;
+
+type SignInUseCaseTokenService = Pick<TokenService, 'signAuthToken'>;
+
+type SignInUseCaseUsersRepository = Pick<UsersRepository, 'findByEmailWithPassword'>;
+
 type MakeSignInUseCaseDependencies = {
   passwordService: SignInUseCasePasswordService;
   tokenService: SignInUseCaseTokenService;
@@ -20,12 +26,6 @@ type SignInResult = {
 };
 
 type SignInUseCase = (data: SignInData) => Promise<SignInResult>;
-
-type SignInUseCasePasswordService = Pick<PasswordService, 'compare'>;
-
-type SignInUseCaseTokenService = Pick<TokenService, 'signAuthToken'>;
-
-type SignInUseCaseUsersRepository = Pick<UsersRepository, 'findByEmailWithPassword'>;
 
 const makeSignInUseCase = (dependencies: MakeSignInUseCaseDependencies): SignInUseCase => {
   return async (data) => {

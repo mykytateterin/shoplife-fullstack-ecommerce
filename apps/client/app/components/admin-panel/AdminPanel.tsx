@@ -11,7 +11,7 @@ const AdminPanel = (): React.JSX.Element => {
     setCurrentPanel(innerText);
   };
 
-  const panelSwitch = (): null | React.JSX.Element => {
+  const panelSwitch = (): React.JSX.Element | null => {
     switch (currentPanel) {
       default:
         return null;

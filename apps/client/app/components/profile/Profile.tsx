@@ -4,7 +4,7 @@ import { useAuthStore } from '../../modules/auth/auth.store';
 import { AdminPanel } from '../admin-panel/AdminPanel';
 import styles from './Profile.module.scss';
 
-const Profile = (): null | React.JSX.Element => {
+const Profile = (): React.JSX.Element | null => {
   const [isAdminPanel, setIsAdminPanel] = useState(false);
   const user = useAuthStore((state) => state.user);
 

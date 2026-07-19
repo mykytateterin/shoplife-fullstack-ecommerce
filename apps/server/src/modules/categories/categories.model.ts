@@ -2,7 +2,7 @@ type DomainCategory = {
   id: number;
   isPublished: boolean;
   name: string;
-  parentId: null | number;
+  parentId: number | null;
   position: number;
   slug: string;
 };
