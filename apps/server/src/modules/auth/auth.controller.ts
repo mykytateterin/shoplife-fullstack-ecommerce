@@ -9,37 +9,29 @@ import type {
 
 import type {
   TypedRequest,
+  TypedRequestAuthUser,
   TypedRequestBody,
-  TypedRequestCookies,
   TypedResponseBody,
-} from '../../types/express.js';
+} from '../../types/express.d.js';
 
 import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';
 import { toContractUser } from '../users/users.api.mapper.js';
-import { getCurrentUserUseCase, signInUseCase, signUpUseCase } from './auth.module.js';
+import { signInUseCase, signUpUseCase } from './auth.module.js';
 
 const isProduction = env.NODE_ENV === 'production';
 
-type AuthCookies = {
-  token?: string;
-};
-
 const authController = {
-  getCurrentUser: async (
-    req: TypedRequestCookies<AuthCookies>,
+  getCurrentUser: (
+    req: TypedRequestAuthUser,
     res: TypedResponseBody<GetCurrentUserResponse>,
-  ): Promise<void> => {
-    const { token } = req.cookies;
-
-    if (!token) {
+  ): void => {
+    if (!req.user) {
       throw new AppException(401, 'Unauthorized');
     }
 
-    const userData = await getCurrentUserUseCase({ token });
-
     res.status(200).json({
-      data: toContractUser(userData),
+      data: toContractUser(req.user),
       success: true,
     });
   },

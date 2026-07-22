@@ -3,10 +3,11 @@ import { Router } from 'express';
 
 import { createValidationMiddleware } from '../../core/middlewares/validation.middleware.js';
 import { authController } from './auth.controller.js';
+import { authMiddleware } from './auth.module.js';
 
 const authRouter = Router();
 
-authRouter.get('/me', authController.getCurrentUser);
+authRouter.get('/me', authMiddleware, authController.getCurrentUser);
 
 authRouter.post(
   '/sign-up',
