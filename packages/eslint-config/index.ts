@@ -79,7 +79,7 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
   if (target === 'node') {
     targetSpecific.push({
       files: ['**/src/**/*.{ts,tsx,mts,cts}'],
-      ignores: ['**/src/types/express.d.ts'],
+      ignores: ['**/src/types/express.types.ts'],
       rules: {
         'no-restricted-imports': [
           'error',
@@ -88,7 +88,7 @@ const createConfig = (rootDir: string, target: Target): Linter.Config[] => {
               {
                 importNames: ['Request', 'Response'],
                 message:
-                  'Use request and response types from src/types/express.js instead of raw Express Request/Response',
+                  'Use request and response types from src/types/express.types.js instead of raw Express Request/Response',
                 name: 'express',
               },
             ],

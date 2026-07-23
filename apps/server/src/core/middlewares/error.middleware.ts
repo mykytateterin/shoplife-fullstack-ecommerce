@@ -1,7 +1,7 @@
 import type { ApiErrorResponse } from '@shoplife/contracts';
 import type { NextFunction } from 'express';
 
-import type { TypedRequest, TypedResponseBody } from '../../types/express.js';
+import type { TypedRequest, TypedResponseBody } from '../../types/express.types.js';
 
 import { AppException } from '../exceptions/AppException.js';
 

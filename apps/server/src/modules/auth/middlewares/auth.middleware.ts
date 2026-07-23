@@ -4,7 +4,7 @@ import type {
   TypedCookiesAuth,
   TypedRequestCookies,
   TypedResponse,
-} from '../../../types/express.d.js';
+} from '../../../types/express.types.js';
 import type { UsersRepository } from '../../users/users.repository.port.js';
 import type { TokenService } from '../ports/token.service.port.js';
 

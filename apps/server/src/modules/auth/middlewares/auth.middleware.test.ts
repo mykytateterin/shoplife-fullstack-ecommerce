@@ -6,7 +6,7 @@ import type {
   TypedCookiesAuth,
   TypedRequestCookies,
   TypedResponse,
-} from '../../../types/express.d.js';
+} from '../../../types/express.types.js';
 
 import { DomainUserRole } from '../../users/users.model.js';
 import { createAuthMiddleware } from './auth.middleware.js';

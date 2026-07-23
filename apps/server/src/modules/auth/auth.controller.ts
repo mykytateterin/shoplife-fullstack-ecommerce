@@ -12,7 +12,7 @@ import type {
   TypedRequestAuthUser,
   TypedRequestBody,
   TypedResponseBody,
-} from '../../types/express.d.js';
+} from '../../types/express.types.js';
 
 import { env } from '../../config/env.js';
 import { AppException } from '../../core/exceptions/AppException.js';

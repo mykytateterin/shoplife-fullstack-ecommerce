@@ -2,7 +2,7 @@ import type { ValidationErrorDetail } from '@shoplife/contracts';
 import type { NextFunction } from 'express';
 import type * as z from 'zod';
 
-import type { TypedRequest, TypedResponseBody } from '../../types/express.js';
+import type { TypedRequest, TypedResponseBody } from '../../types/express.types.js';
 
 import { ValidationException } from '../exceptions/ValidationException.js';
 
