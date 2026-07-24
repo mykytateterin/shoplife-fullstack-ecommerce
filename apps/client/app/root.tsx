@@ -25,25 +25,24 @@ const links: Route.LinksFunction = () => [
 ];
 
 const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps): React.JSX.Element => {
-  let message = 'Oops!';
-  let details = 'An unexpected error occurred.';
+  let message = 'Something went wrong';
+  let details = 'An unexpected error occurred...';
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error';
-    details =
-      error.status === 404 ? 'The requested page could not be found.' : error.statusText || details;
+    message = `Error ${String(error.status)}`;
+    details = error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <main>
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre>
           <code>{stack}</code>
         </pre>
       )}
