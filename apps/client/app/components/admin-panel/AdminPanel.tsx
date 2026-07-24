@@ -27,9 +27,6 @@ const AdminPanel = (): React.JSX.Element => {
         Products
       </button>
       <button onClick={handleClick} type="button">
-        Promotions
-      </button>
-      <button onClick={handleClick} type="button">
         Users
       </button>
       {panelSwitch()}
