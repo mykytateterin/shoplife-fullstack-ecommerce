@@ -1,11 +1,37 @@
-import type { GetCategoriesResponse } from '@shoplife/contracts';
+import type {
+  CreateCategoryRequest,
+  CreateCategoryResponse,
+  GetCategoriesResponse,
+} from '@shoplife/contracts';
 
-import type { TypedRequest, TypedResponseBody } from '../../types/express.js';
+import type {
+  TypedRequest,
+  TypedRequestBody,
+  TypedResponseBody,
+} from '../../types/express.types.js';
 
 import { toContractCategoryTree } from './categories.api.mapper.js';
-import { getCategoriesUseCase } from './categories.module.js';
+import { createCategoryUseCase, getCategoriesUseCase } from './categories.module.js';
 
 const categoriesController = {
+  create: async (
+    req: TypedRequestBody<CreateCategoryRequest>,
+    res: TypedResponseBody<CreateCategoryResponse>,
+  ): Promise<void> => {
+    const { isPublished, name, parentId, position, slug } = req.body;
+
+    await createCategoryUseCase({
+      isPublished,
+      name,
+      parentId,
+      position,
+      slug,
+    });
+
+    res.status(201).json({
+      success: true,
+    });
+  },
   getCategories: async (
     _req: TypedRequest,
     res: TypedResponseBody<GetCategoriesResponse>,
