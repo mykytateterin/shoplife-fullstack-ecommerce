@@ -11,6 +11,8 @@ import {
 
 import type { Route } from './+types/root';
 
+import styles from './root.module.scss';
+
 const links: Route.LinksFunction = () => [
   {
     href: '/favicon-96x96.png',
@@ -38,14 +40,16 @@ const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps): React.JSX.Element =
   }
 
   return (
-    <main>
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre>
-          <code>{stack}</code>
-        </pre>
-      )}
+    <main className={styles['error-page']}>
+      <div className={styles['error-page__body']}>
+        <h1 className={styles['error-page__title']}>{message}</h1>
+        <p className={styles['error-page__description']}>{details}</p>
+        {stack && (
+          <pre>
+            <code>{stack}</code>
+          </pre>
+        )}
+      </div>
     </main>
   );
 };
