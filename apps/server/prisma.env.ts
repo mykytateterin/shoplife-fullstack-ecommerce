@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { z } from 'zod';
 
 const prismaEnvSchema = z.object({
-  DATABASE_URL: z.url(),
+  DATABASE_URL: z.url({ error: 'DATABASE_URL is not a valid URL' }),
 });
 
 const _prismaEnv = prismaEnvSchema.safeParse(process.env);

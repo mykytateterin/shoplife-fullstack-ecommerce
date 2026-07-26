@@ -3,19 +3,19 @@ import { z } from 'zod';
 const signInRequestSchema = z.object({
   email: z
     .email({
-      message: 'Please enter a valid email address',
+      error: 'Please enter a valid email address',
     })
     .trim()
     .max(255, {
-      message: 'Email cannot exceed 255 characters',
+      error: 'Email cannot exceed 255 characters',
     }),
 
   password: z
     .string({
-      message: 'Password is required',
+      error: 'Password is required',
     })
     .max(72, {
-      message: 'Password cannot exceed 72 characters',
+      error: 'Password cannot exceed 72 characters',
     }),
 });
 
