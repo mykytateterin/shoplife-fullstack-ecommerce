@@ -6,11 +6,13 @@ const AccountPage = (): React.JSX.Element => {
   const user = useAuthStore((state) => state.user);
   const isSessionLoading = useAuthStore((state) => state.isSessionLoading);
 
-  if (isSessionLoading) {
-    return <main className={styles['account-page']} />;
-  }
-
-  return <main className={styles['account-page']}>{user ? <Profile /> : <AuthForm />}</main>;
+  return (
+    <main className={styles['account-page']}>
+      <div className={styles['account-page__body']}>
+        {isSessionLoading ? null : user ? <Profile /> : <AuthForm />}
+      </div>
+    </main>
+  );
 };
 
 export { AccountPage };
