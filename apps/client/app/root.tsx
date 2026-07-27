@@ -43,7 +43,7 @@ const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps): React.JSX.Element =
     <main className={styles['error-page']}>
       <div className={styles['error-page__body']}>
         <h1 className={styles['error-page__title']}>{message}</h1>
-        <p className={styles['error-page__description']}>{details}</p>
+        <p>{details}</p>
         {stack && (
           <pre>
             <code>{stack}</code>
