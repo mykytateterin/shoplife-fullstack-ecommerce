@@ -1,24 +1,22 @@
 .footer {
-  border-top: 1px solid black;
+  outline: 1px solid black;
   background-color: white;
-  height: 50px;
+  padding-block: 1rem;
 
   &__body {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     width: 90%;
-    height: 100%;
     margin-inline: auto;
+    row-gap: 0.5rem;
   }
 
   &__logo {
     opacity: 0.5;
-    height: 50%;
+    max-height: 1.5rem;
   }
 
   &__info {
-    text-align: end;
-    font-size: 16px;
+    text-align: center;
   }
 }
