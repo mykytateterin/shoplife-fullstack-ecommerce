@@ -29,11 +29,11 @@ catalogs:
     'react': '^19.2.8'
     'react-dom': '^19.2.8'
     'react-router': '8.3.0'
-    'framer-motion': '^12.42.2'
     'normalize.css': '^8.0.1'
     'sass-embedded': '^1.100.0'
     'zustand': '^5.0.14'
     isbot: ^5.2.1
+    motion: ^12.43.0
   server:
     '@types/cookie-parser': '^1.4.10'
     '@types/cors': '^2.8.19'
