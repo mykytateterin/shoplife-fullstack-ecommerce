@@ -8,10 +8,16 @@
     "husky": "catalog:",
     "lint-staged": "catalog:",
     "prettier": "catalog:",
+    "stylelint": "catalog:",
+    "stylelint-config-standard-scss": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:"
   },
   "lint-staged": {
+    "*.{css,scss,sass}": [
+      "prettier --write",
+      "stylelint --fix"
+    ],
     "*.{yaml,yml,json,jsonc,json5,js,mjs,cjs,ts,tsx,mts,cts}": [
       "eslint --fix",
       "prettier --write"

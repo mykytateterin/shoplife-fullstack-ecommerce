@@ -27,8 +27,8 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint . && stylelint **/*.{css,scss,sass}",
+    "lint:fix": "eslint . --fix && stylelint **/*.{css,scss,sass} --fix",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc --noEmit"
   },
